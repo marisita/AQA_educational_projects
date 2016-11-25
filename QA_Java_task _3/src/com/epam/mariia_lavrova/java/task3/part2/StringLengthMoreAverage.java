@@ -1,9 +1,9 @@
 /**
- * Created by Mariia_Lavrova on 11/23/2016.
+ * Class for searching strings with length more than average
+ *
+ * @author Mariia_Lavrova
+ * @since 11/23/2016
  */
-
-//Ввести n строк с консоли. Вывести на консоль те строки, длина которых больше средней, а также длину.
-
 
 package com.epam.mariia_lavrova.java.task3.part2;
 
@@ -12,15 +12,14 @@ import java.util.Scanner;
 
 public class StringLengthMoreAverage {
 
-    private final String TASK = "\n \n // 2. Ввести n строк с консоли. Вывести на консоль те строки, длина которых больше средней, а также длину.";
-    private final String SET_ARRAY_LENGTH = "\n Please input amount of strings:";
-    private final String WRONG_ARRAY_LENGTH = "\n You input wrong number!";
-    private final String STRINGS = "\n Strings with length more than average:";
-    private final String AVERAGE_LENGTH = "\n Average length of strings: ";
+    private static final String TASK = "\n \n // 2. Ввести n строк с консоли. Вывести на консоль те строки, длина которых больше средней, а также длину.";
+    private static final String SET_ARRAY_LENGTH = "\n Please input amount of strings:";
+    private static final String WRONG_ARRAY_LENGTH = "\n You input wrong number!";
+    private static final String STRINGS = "\n Strings with length more than average:";
+    private static final String AVERAGE_LENGTH = "\n Average length of strings: ";
 
 
     private String[] array;
-    private String[] arrayStringLengthMoreAverage;
     private int arrayN;
     private double averageLength;
 
@@ -85,7 +84,7 @@ public class StringLengthMoreAverage {
 
         System.out.println(STRINGS);
 
-         for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             if (array[i].length() >= averageLength) {
                 System.out.println("string #" + (i + 1) + ": " + array[i]);
             }

@@ -1,6 +1,8 @@
-
 /**
- * Created by Mariia_Lavrova on 11/23/2016.
+ * Class for calculation logic
+ *
+ * @author Mariia_Lavrova
+ * @since 11/23/2016
  */
 
 package com.epam.mariia_lavrova.java.task3.part3;
@@ -10,23 +12,23 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    private final String TASK = "\n \n // 3. Написать калькулятор – программа, которая на входе получает два целых числа (число А и число В), \n" +
+    private static final String TASK = "\n \n // 3. Написать калькулятор – программа, которая на входе получает два целых числа (число А и число В), \n" +
             "выполняет арифметическую операцию («+» - сложение, «-» - вычитание, «*» - умножение, «/» - деление) и выводит результат в консоль. \n" +
             "Для каждой операции использовать отдельный метод.\n";
-    private final String INPUT_A = "\nPlease input first operand (A)";
-    private final String INPUT_B = "\nPlease input second operand (B)";
-    private final String WRONG_NUMBER = "\n You input wrong number!";
-    private final String WRONG_OPERATION = "\n You try to divide to zero!";
-    private final String RESULTS = "\n Calculating results: ";
+    private static final String INPUT_A = "\nPlease input first operand (A)";
+    private static final String INPUT_B = "\nPlease input second operand (B)";
+    private static final String WRONG_NUMBER = "\n You input wrong number!";
+    private static final String WRONG_OPERATION = "\n You try to divide to zero!";
+    private static final String RESULTS = "\n Calculating results: ";
 
 
     private int a;
     private int b;
 
-    private int additionResult;
-    private int subtractionResult;
-    private int multiplicationResult;
-    private int divisionResult;
+    private double additionResult;
+    private double subtractionResult;
+    private double multiplicationResult;
+    private double divisionResult;
 
 
     private void printTask() {
@@ -68,8 +70,8 @@ public class Calculator {
     }
 
     private void divide() {
-        try{
-            divisionResult = a / b;
+        try {
+            divisionResult = (double) a / b;
         } catch (ArithmeticException e) {
             System.out.println(WRONG_OPERATION);
             divisionResult = 0;
@@ -77,15 +79,7 @@ public class Calculator {
 
     }
 
-
-    public void doCalculation(){
-        add();
-        subtract();
-        multiply();
-        divide();
-    }
-
-    public void printCalculationResult() {
+    private void printCalculationResult() {
         System.out.println(RESULTS);
         System.out.println("a + b = " + additionResult);
         System.out.println("a - b = " + subtractionResult);
@@ -107,7 +101,11 @@ public class Calculator {
         sc1.close();
         sc2.close();
 
-        doCalculation();
+        add();
+        subtract();
+        multiply();
+        divide();
+
         printCalculationResult();
 
     }

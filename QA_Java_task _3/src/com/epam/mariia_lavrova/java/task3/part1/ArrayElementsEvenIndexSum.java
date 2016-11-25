@@ -1,16 +1,17 @@
 /**
- * Created by Mariia_Lavrova on 11/23/2016.
+ * Class for searching sum of elements that have even indexes
+ *
+ * @author Mariia_Lavrova
+ * @since 11/23/2016
  */
-
-// В массиве целых чисел определить сумму элементов, состоящих на чётных позициях.
 
 package com.epam.mariia_lavrova.java.task3.part1;
 
 public class ArrayElementsEvenIndexSum {
 
-    private final String TASK = "\n \n // 1. В массиве целых чисел определить сумму элементов, состоящих на чётных позициях.";
-    private final String ARRAY = "\n Generated array: ";
-    private final String SUM = "\n Sum of array elements with even indexes: ";
+    private static final String TASK = "\n \n // 1. В массиве целых чисел определить сумму элементов, состоящих на чётных позициях.";
+    private static final String ARRAY = "\n Generated array: ";
+    private static final String SUM = "\n Sum of array elements with even indexes: ";
 
     private int[] array = new int[20];
     private int minArray = -10;
@@ -61,6 +62,7 @@ public class ArrayElementsEvenIndexSum {
         System.out.println(SUM + ElementsEvenIndexSum);
 
     }
+
 
     public void getElementsEvenIndexSum() {
 
