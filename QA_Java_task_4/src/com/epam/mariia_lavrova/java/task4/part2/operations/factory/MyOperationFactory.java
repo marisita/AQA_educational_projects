@@ -1,12 +1,16 @@
-package com.epam.mariia_lavrova.java.task4.part2.operations.factory;
-
-        import com.epam.mariia_lavrova.java.task4.part2.operations.*;
-
 /**
- * Created by Mariia_Lavrova on 11/24/2016.
+ * Class for containing operation objects
+ *
+ * @author Mariia_Lavrova
+ * @since 11/24/2016
  */
 
-public class MyOperationFactory implements OperationFactory{
+package com.epam.mariia_lavrova.java.task4.part2.operations.factory;
+
+import com.epam.mariia_lavrova.java.task4.part2.operations.*;
+
+
+public class MyOperationFactory implements OperationFactory {
 
     private Operation[] operations = new Operation[4];
 

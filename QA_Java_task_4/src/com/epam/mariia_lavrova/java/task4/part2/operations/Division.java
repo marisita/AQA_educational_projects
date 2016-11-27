@@ -1,8 +1,10 @@
+/**
+ * @author Mariia_Lavrova
+ * @since 11/24/2016
+ */
+
 package com.epam.mariia_lavrova.java.task4.part2.operations;
 
-/**
- * Created by Mariia_Lavrova on 11/24/2016.
- */
 public class Division implements Operation {
 
     @Override
@@ -10,10 +12,9 @@ public class Division implements Operation {
 
         double divisionResult;
 
-        try{
+        try {
             divisionResult = (double) a / b;
         } catch (ArithmeticException e) {
-            //System.out.println(WRONG_OPERATION);
             divisionResult = 0;
         }
 

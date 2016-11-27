@@ -1,3 +1,8 @@
+/**
+ * @author Mariia_Lavrova
+ * @since 11/24/2016
+ */
+
 package com.epam.mariia_lavrova.java.task4.part2.calculator;
 
 import com.epam.mariia_lavrova.java.task4.part2.operations.Operation;
@@ -6,9 +11,7 @@ import com.epam.mariia_lavrova.java.task4.part2.operations.factory.MyOperationFa
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- * Created by Mariia_Lavrova on 11/24/2016.
- */
+
 public class Calculator {
 
     private static final String TASK = "\n \n // 3. Написать калькулятор – программа, которая на входе получает два целых числа (число А и число В), \n" +
@@ -19,45 +22,46 @@ public class Calculator {
     private static final String INPUT_OPERATION_CODE = "\nPlease input operation (+ , - , * , /)";
     private static final String WRONG_NUMBER = "\nYou input wrong number!";
     private static final String RESULTS = "\nCalculating results: ";
-    private static final String INPUT_TASK = "\nPlease input task: ";
-
-
 
     private int a;
     private int b;
     private int operationCode;
     private double operationResult;
-    private String task;
 
+    private void printTask() {
+        System.out.println(TASK);
+    }
 
-    private void setA(Scanner sc) {
+    private void setA(Scanner scanner) {
 
         System.out.println(INPUT_A);
 
         try {
-            a = sc.nextInt();
+            a = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println(WRONG_NUMBER);
+            System.err.println(WRONG_NUMBER);
         }
     }
 
-    private void setB(Scanner sc) {
+
+    private void setB(Scanner scanner) {
 
         System.out.println(INPUT_B);
 
         try {
-            b = sc.nextInt();
+            b = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println(WRONG_NUMBER);
+            System.err.println(WRONG_NUMBER);
         }
     }
 
-    private void setOperationCode(Scanner sc) {
+
+    private void setOperationCode(Scanner scanner) {
 
         System.out.println(INPUT_OPERATION_CODE);
-        String s = sc.nextLine();
+        String sign = scanner.nextLine();
 
-        switch (s) {
+        switch (sign) {
             case "+": {
                 operationCode = 0;
                 break;
@@ -79,56 +83,9 @@ public class Calculator {
             }
 
             default:
-                operationCode = -1;
+                System.err.println("Command is not found.");
+                return;
         }
-    }
-
-    private void setTask(Scanner sc) {
-        System.out.println(INPUT_TASK);
-        task = sc.nextLine();
-        task = task.replaceAll(" ", "");
-
-        if (task.indexOf('+') >= 0) {
-            try {
-                a = Integer.parseInt(task.substring(0, task.indexOf('+')));
-                b = Integer.parseInt(task.substring(task.indexOf('+') + 1));
-                operationCode = 0;
-            } catch (NumberFormatException e) {
-                System.err.println("Неверный формат строки!");
-            }
-        }
-
-        if (task.indexOf('-') >= 0) {
-            try {
-                a = Integer.parseInt(task.substring(0, task.indexOf('-')));
-                b = Integer.parseInt(task.substring(task.indexOf('-') + 1));
-                operationCode = 1;
-            } catch (NumberFormatException e) {
-                System.err.println("Неверный формат строки!");
-            }
-        }
-
-        if (task.indexOf('*') >= 0) {
-            try {
-                a = Integer.parseInt(task.substring(0, task.indexOf('*')));
-                b = Integer.parseInt(task.substring(task.indexOf('*') + 1));
-                operationCode = 2;
-            } catch (NumberFormatException e) {
-                System.err.println("Неверный формат строки!");
-            }
-        }
-
-        if (task.indexOf('/') >= 0) {
-            try {
-                a = Integer.parseInt(task.substring(0, task.indexOf('/')));
-                b = Integer.parseInt(task.substring(task.indexOf('/') + 1));
-                operationCode = 3;
-            } catch (NumberFormatException e) {
-                System.err.println("Неверный формат строки!");
-            }
-        }
-
-
     }
 
     private void executeCalculation() {
@@ -136,8 +93,8 @@ public class Calculator {
         MyOperationFactory factory = new MyOperationFactory();
         Operation operation = factory.getOperation(operationCode);
         operationResult = operation.execute(a, b);
-
     }
+
 
     private void printResult() {
 
@@ -146,19 +103,25 @@ public class Calculator {
     }
 
 
-    public void getCalculation() {
+    public void calculate() {
 
-        Scanner sc1 = new Scanner(System.in);
-        // Scanner sc2 = new Scanner(System.in);
+        printTask();
 
-        /*
-        setA(sc1);
-        setOperationCode(sc2);
-        setB(sc1);
-        */
+        Scanner scanner = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);
+        Scanner scanner3 = new Scanner(System.in);
 
-        setTask(sc1);
-        executeCalculation();
-        printResult();
+        do {
+            setA(scanner);
+            setOperationCode(scanner2);
+            setB(scanner);
+
+            executeCalculation();
+            printResult();
+            System.out.println("Do you want continue? y/n");
+            if (scanner3.nextLine().equals("n")) {
+                break;
+            }
+        } while (true);
     }
 }
