@@ -8,7 +8,6 @@ package com.epam.mariia_lavrova.java.task4.part2.calculator;
 import com.epam.mariia_lavrova.java.task4.part2.operations.Operation;
 import com.epam.mariia_lavrova.java.task4.part2.operations.factory.MyOperationFactory;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -17,9 +16,7 @@ public class Calculator {
     private static final String TASK = "\n \n // 3. Написать калькулятор – программа, которая на входе получает два целых числа (число А и число В), \n" +
             "выполняет арифметическую операцию («+» - сложение, «-» - вычитание, «*» - умножение, «/» - деление) и выводит результат в консоль. \n" +
             "Для каждой операции использовать отдельный метод.\n";
-    private static final String INPUT_A = "\nPlease input first operand (A)";
-    private static final String INPUT_B = "\nPlease input second operand (B)";
-    private static final String INPUT_OPERATION_CODE = "\nPlease input operation (+ , - , * , /)";
+    private static final String INPUT_EXPRESSION = "\nPlease input math expression like 1+5";
     private static final String WRONG_NUMBER = "\nYou input wrong number!";
     private static final String RESULTS = "\nCalculating results: ";
 
@@ -32,61 +29,46 @@ public class Calculator {
         System.out.println(TASK);
     }
 
-    private void setA(Scanner scanner) {
+    private void setMathExpression(Scanner scanner) {
 
-        System.out.println(INPUT_A);
+        System.out.println(INPUT_EXPRESSION);
 
-        try {
-            a = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.err.println(WRONG_NUMBER);
-        }
-    }
+        int signIndex = 0;
+        String mathExpression = scanner.nextLine();
+        char[] temp = mathExpression.toCharArray();
 
-
-    private void setB(Scanner scanner) {
-
-        System.out.println(INPUT_B);
-
-        try {
-            b = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.err.println(WRONG_NUMBER);
-        }
-    }
-
-
-    private void setOperationCode(Scanner scanner) {
-
-        System.out.println(INPUT_OPERATION_CODE);
-        String sign = scanner.nextLine();
-
-        switch (sign) {
-            case "+": {
+        for (int i = 1; i < temp.length; i++) {
+            if (temp[i] == '+') {
+                signIndex = i;
                 operationCode = 0;
                 break;
             }
-
-            case "-": {
+            if (temp[i] == '-') {
+                signIndex = i;
                 operationCode = 1;
                 break;
             }
-
-            case "*": {
+            if (temp[i] == '*') {
+                signIndex = i;
                 operationCode = 2;
                 break;
             }
-
-            case "/": {
+            if (temp[i] == '/') {
+                signIndex = i;
                 operationCode = 3;
                 break;
             }
-
-            default:
-                System.err.println("Command is not found.");
-                return;
         }
+
+        try {
+            a = (int) Double.parseDouble(mathExpression.substring(0, signIndex));
+            b = (int) Double.parseDouble(mathExpression.substring(signIndex + 1, mathExpression.length()));
+        } catch (NumberFormatException e) {
+            System.err.println(WRONG_NUMBER);
+        }
+
     }
+
 
     private void executeCalculation() {
 
@@ -109,17 +91,13 @@ public class Calculator {
 
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
-        Scanner scanner3 = new Scanner(System.in);
 
         do {
-            setA(scanner);
-            setOperationCode(scanner2);
-            setB(scanner);
-
+            setMathExpression(scanner);
             executeCalculation();
             printResult();
             System.out.println("Do you want continue? y/n");
-            if (scanner3.nextLine().equals("n")) {
+            if (scanner2.nextLine().equals("n")) {
                 break;
             }
         } while (true);

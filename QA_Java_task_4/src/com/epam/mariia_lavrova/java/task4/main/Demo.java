@@ -53,7 +53,8 @@ public class Demo {
         deviceContainer.printDevices(householdDevices);
 
         System.out.println("\n\nFiltered devices:");
-        HouseholdDevice[] filteredHouseholdDevices = deviceContainer.filterByPrice(10, 400);
+        HouseholdDevice[] filteredHouseholdDevices = deviceContainer.filterByPrice(10, 100);
         deviceContainer.printDevices(filteredHouseholdDevices);
+
     }
 }
