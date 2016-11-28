@@ -19,6 +19,7 @@ public class Calculator {
     private static final String INPUT_EXPRESSION = "\nPlease input math expression like 1+5";
     private static final String WRONG_NUMBER = "\nYou input wrong number!";
     private static final String RESULTS = "\nCalculating results: ";
+    private static final String CONTINUE = "\nDo you want continue? y/n";
 
     private int a;
     private int b;
@@ -35,6 +36,8 @@ public class Calculator {
 
         int signIndex = 0;
         String mathExpression = scanner.nextLine();
+        mathExpression = mathExpression.replaceAll(" ", "");
+
         char[] temp = mathExpression.toCharArray();
 
         for (int i = 1; i < temp.length; i++) {
@@ -89,15 +92,15 @@ public class Calculator {
 
         printTask();
 
-        Scanner scanner = new Scanner(System.in);
-        Scanner scanner2 = new Scanner(System.in);
+        Scanner mathExpressionScanner = new Scanner(System.in);
+        Scanner continueScanner = new Scanner(System.in);
 
         do {
-            setMathExpression(scanner);
+            setMathExpression(mathExpressionScanner);
             executeCalculation();
             printResult();
-            System.out.println("Do you want continue? y/n");
-            if (scanner2.nextLine().equals("n")) {
+            System.out.println(CONTINUE);
+            if (continueScanner.nextLine().equals("n")) {
                 break;
             }
         } while (true);

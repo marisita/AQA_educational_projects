@@ -52,8 +52,12 @@ public class Demo {
         householdDevices = deviceContainer.sortByPower(householdDevices);
         deviceContainer.printDevices(householdDevices);
 
+
+        int firstPrice = 10;
+        int secondPrice = 100;
+
         System.out.println("\n\nFiltered devices:");
-        HouseholdDevice[] filteredHouseholdDevices = deviceContainer.filterByPrice(10, 100);
+        HouseholdDevice[] filteredHouseholdDevices = deviceContainer.filterByPrice(firstPrice, secondPrice);
         deviceContainer.printDevices(filteredHouseholdDevices);
 
     }
