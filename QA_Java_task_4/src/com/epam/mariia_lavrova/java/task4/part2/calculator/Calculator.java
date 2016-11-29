@@ -92,17 +92,17 @@ public class Calculator {
 
         printTask();
 
-        Scanner mathExpressionScanner = new Scanner(System.in);
-        Scanner continueScanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         do {
-            setMathExpression(mathExpressionScanner);
+            setMathExpression(scanner);
             executeCalculation();
             printResult();
             System.out.println(CONTINUE);
-            if (continueScanner.nextLine().equals("n")) {
-                break;
-            }
-        } while (true);
+        }
+
+        while (!scanner.nextLine().equals("n"));
+
+        scanner.close();
     }
 }
