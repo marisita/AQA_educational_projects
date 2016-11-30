@@ -1,5 +1,5 @@
 /**
- * Class for Students instances
+ * Class for Students' instances, it is needed for store name and surname of the students
  *
  * @author Mariia_Lavrova
  * @since 11/28/2016

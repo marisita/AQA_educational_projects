@@ -1,5 +1,6 @@
 /**
- * Class for Curriculum instances
+ * Class for Curriculums' instances, it is needed for store the curriculum's information, calculate date of the curriculum
+ * according to the courses which are contained in the curriculum
  *
  * @author Mariia_Lavrova
  * @since 11/28/2016
@@ -15,19 +16,20 @@ import java.util.Scanner;
 
 public class Curriculum implements Report {
 
-    private static final String INCORRECT_DATE = "You can't start curriculum at this time (valid time is from 10.00 to 18.00)";
     private static final String DATE_FORMAT = "dd.MM.yyyy HH.mm";
     private static final String CURRICULUM_NOT_COMPLETE = "Обучение не закончено. До окончания курса осталось ";
     private static final String CURRICULUM_COMPLETE = "Обучение закончено. После окончания курса прошло ";
     private static final String INVALID_REPORT_TYPE = "\nSorry, you input invalid report type.";
-
+    private static final int MIN_WORK_TIME = 10;
+    private static final int MAX_WORK_TIME = 18;
 
     private String curriculumName;
     private List<Course> courses;
-    private Calendar startDate;
+    private Calendar curriculumStartDate;
+    private Calendar curriculumEndDate;
     private int curriculumDurationInHours;
-    private Calendar endDate;
     private Student student;
+    private int durationWorkTime = MAX_WORK_TIME - MIN_WORK_TIME;
 
     public String getCurriculumName() {
         return curriculumName;
@@ -37,12 +39,12 @@ public class Curriculum implements Report {
         return courses;
     }
 
-    public Calendar getStartDate() {
-        return startDate;
+    public Calendar getCurriculumStartDate() {
+        return curriculumStartDate;
     }
 
-    public Calendar getEndDate() {
-        return endDate;
+    public Calendar getCurriculumEndDate() {
+        return curriculumEndDate;
     }
 
     public Student getStudent() {
@@ -50,25 +52,19 @@ public class Curriculum implements Report {
     }
 
     /**
-     * Curriculum constructor, set transmitted values and check that startDate is between 10.00 and 18.00.
+     * Curriculum constructor, sets transmitted values and checks that startDate is between 10.00 and 18.00.
      *
      * @param curriculumName
      * @param courses
-     * @param startDate
+     * @param curriculumStartDate
      * @param student
      */
-    public Curriculum(String curriculumName, List<Course> courses, Calendar startDate, Student student) {
+    public Curriculum(String curriculumName, List<Course> courses, Calendar curriculumStartDate, Student student) {
 
-        if (startDate.get(Calendar.HOUR_OF_DAY) >= 10 && startDate.get(Calendar.HOUR_OF_DAY) <= 18) {
-            this.startDate = startDate;
-        } else {
-            System.err.println(INCORRECT_DATE);
-            System.exit(1);
-        }
-
+        this.curriculumStartDate = curriculumStartDate;
         this.curriculumName = curriculumName;
         this.courses = courses;
-        this.endDate = calculateEndDate();
+        this.curriculumEndDate = calculateEndDate();
         this.student = student;
     }
 
@@ -76,11 +72,11 @@ public class Curriculum implements Report {
 
         calculateCurriculumDurationInHours();
 
-        int days = curriculumDurationInHours / 8;
-        int hours = curriculumDurationInHours % 8;
+        int days = curriculumDurationInHours / durationWorkTime;
+        int hours = curriculumDurationInHours % durationWorkTime;
 
         Calendar endDate = Calendar.getInstance();
-        endDate.setTime(startDate.getTime());
+        endDate.setTime(curriculumStartDate.getTime());
         endDate.add(Calendar.DAY_OF_MONTH, days);
         endDate.add(Calendar.HOUR, hours);
 
@@ -94,52 +90,67 @@ public class Curriculum implements Report {
         }
     }
 
-    private String calculateTimeBeforeOrAfterEndCurriculum() {
+    private String getTimeBeforeOrAfterEndOfCurriculum() {
 
         String output = "";
         Calendar currentDate = Calendar.getInstance();
-        long subtractionMillis = endDate.getTimeInMillis() - currentDate.getTimeInMillis();
+        long subtractionMillis = curriculumEndDate.getTimeInMillis() - currentDate.getTimeInMillis();
         int hours = (int) Math.abs(subtractionMillis / (1000 * 60 * 60));
         int days = hours / 24;
 
         if (subtractionMillis >= 0) {
             output += CURRICULUM_NOT_COMPLETE;
-            if (currentDate.get(Calendar.HOUR_OF_DAY) >= 10 && currentDate.get(Calendar.HOUR_OF_DAY) <= 18) {
-                if (endDate.get(Calendar.HOUR_OF_DAY) > currentDate.get(Calendar.HOUR_OF_DAY)) {
-                    hours = hours % 24;
-                } else {
-                    hours = 8 + endDate.get(Calendar.HOUR_OF_DAY) - currentDate.get(Calendar.HOUR_OF_DAY);
-                }
-            } else {
-                hours = endDate.get(Calendar.HOUR_OF_DAY) - 10;
-            }
+            hours = getTimeBeforeEndOfCurriculum(hours, currentDate);
         } else {
             output += CURRICULUM_COMPLETE;
-            if (currentDate.get(Calendar.HOUR_OF_DAY) >= 10 && currentDate.get(Calendar.HOUR_OF_DAY) <= 18) {
-                if (endDate.get(Calendar.HOUR_OF_DAY) <= currentDate.get(Calendar.HOUR_OF_DAY)) {
-                    hours = hours % 24;
-                } else {
-                    hours = 8 + currentDate.get(Calendar.HOUR_OF_DAY) - endDate.get(Calendar.HOUR_OF_DAY);
-                }
-            } else {
-                hours = 18 - endDate.get(Calendar.HOUR_OF_DAY);
-            }
+            hours = getTimeAfterEndOfCurriculum(hours, currentDate);
         }
 
         return output + days + " дней, " + hours + " часов.";
     }
 
+    private int getTimeBeforeEndOfCurriculum(int hours, Calendar currentDate) {
+
+        if (currentDate.get(Calendar.HOUR_OF_DAY) >= MIN_WORK_TIME && currentDate.get(Calendar.HOUR_OF_DAY) <= MAX_WORK_TIME) {
+            if (curriculumEndDate.get(Calendar.HOUR_OF_DAY) > currentDate.get(Calendar.HOUR_OF_DAY)) {
+                hours = hours % 24;
+            } else {
+                hours = durationWorkTime + curriculumEndDate.get(Calendar.HOUR_OF_DAY) - currentDate.get(Calendar.HOUR_OF_DAY);
+            }
+        } else {
+            hours = curriculumEndDate.get(Calendar.HOUR_OF_DAY) - MIN_WORK_TIME;
+        }
+
+        return hours;
+    }
+
+    private int getTimeAfterEndOfCurriculum(int hours, Calendar currentDate) {
+
+        if (currentDate.get(Calendar.HOUR_OF_DAY) >= MIN_WORK_TIME && currentDate.get(Calendar.HOUR_OF_DAY) <= MAX_WORK_TIME) {
+            if (curriculumEndDate.get(Calendar.HOUR_OF_DAY) <= currentDate.get(Calendar.HOUR_OF_DAY)) {
+                hours = hours % 24;
+            } else {
+                hours = durationWorkTime + currentDate.get(Calendar.HOUR_OF_DAY) - curriculumEndDate.get(Calendar.HOUR_OF_DAY);
+            }
+        } else {
+            hours = MIN_WORK_TIME + MAX_WORK_TIME - curriculumEndDate.get(Calendar.HOUR_OF_DAY);
+        }
+
+        return hours;
+    }
+
     /**
-     * Method prints detail report which contains first and last name of student, work time, name of his curriculum,
-     * start date and end date of curriculum, current date, curriculum's duration, courses' names and durations
-     * which curriculum contains and information of curriculum (time before end of curriculum if it is not complete or
-     * time after end of curriculum if it is complete)
+     * Method prints a detailed report which contains first and last name of the student, work time,
+     * name of the curriculum, start date and end date of the curriculum, current date, curriculum's duration,
+     * names and durations of courses which are contained in the curriculum and information about the curriculum
+     * (time before end of the curriculum if it is not completed or time after end of the curriculum if it is completed)
      */
     @Override
-    public void printDetailReport() {
+    public void printDetailedReport() {
+
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         String coursesInformation = "";
-        String timeBeforeOrAfterEndCurriculum = calculateTimeBeforeOrAfterEndCurriculum();
+        String timeBeforeOrAfterEndCurriculum = getTimeBeforeOrAfterEndOfCurriculum();
 
         for (Course course : courses) {
             coursesInformation += course.toString();
@@ -147,10 +158,10 @@ public class Curriculum implements Report {
 
         String outputDetailReport =
                 "\nSTUDENT:                      " + student +
-                "\nWORK TIME:                    9.00 - 18.00" +
+                "\nWORK TIME:                    " + MIN_WORK_TIME + ".00 - " + MAX_WORK_TIME + ".00" +
                 "\nCURRICULUM:                   " + curriculumName +
-                "\nSTART_DATE:                   " + dateFormat.format(startDate.getTime()) +
-                "\nEND_DATE:                     " + dateFormat.format(endDate.getTime()) +
+                "\nSTART_DATE:                   " + dateFormat.format(curriculumStartDate.getTime()) +
+                "\nEND_DATE:                     " + dateFormat.format(curriculumEndDate.getTime()) +
                 "\nCURRENT_DATE:                 " + dateFormat.format(Calendar.getInstance().getTime()) +
                 "\nDURATION:                     " + curriculumDurationInHours + " hours" +
                 "\n----------------------------------------------" +
@@ -162,33 +173,36 @@ public class Curriculum implements Report {
     }
 
     /**
-     * Method prints shortcut report which contains first and last name of student, name of his curriculum
-     * and information of curriculum (time before end of curriculum if it is not complete or
-     * time after end of curriculum if it is complete)
+     * Method prints a shortcut report which contains first and last name of the student, name of the curriculum
+     * and information about curriculum (time before end of the curriculum if it is not completed or time after end
+     * of the curriculum if it is completed)
      */
     @Override
     public void printShortcutReport() {
-        String timeBeforeOrAfterEndCurriculum = calculateTimeBeforeOrAfterEndCurriculum();
+        String timeBeforeOrAfterEndCurriculum = getTimeBeforeOrAfterEndOfCurriculum();
         String outputShortcutReport = student + " (" + curriculumName + ") - " + timeBeforeOrAfterEndCurriculum;
         System.out.println(outputShortcutReport);
     }
 
     /**
-     * Method prints shortcut report if user input "s" or details report if user input "d".
+     * Method prints a shortcut report if a user inputs "s" or a details report if a user inputs "d".
      */
     public void getReportType() {
         System.out.println("\nDo you want detail(d) or short(s) report for student " + student + "?");
         Scanner scanner = new Scanner(System.in);
         String reportType = scanner.nextLine();
 
-        if ("s".equals(reportType)) {
-            printShortcutReport();
-        } else if ("d".equals(reportType)) {
-            printDetailReport();
-        } else {
-            System.out.println(INVALID_REPORT_TYPE);
+        switch (reportType) {
+            case ("s"): {
+                printShortcutReport();
+                break;
+            }
+            case ("d"): {
+                printDetailedReport();
+                break;
+            }
+            default:
+                System.out.println(INVALID_REPORT_TYPE);
         }
     }
-
-
 }

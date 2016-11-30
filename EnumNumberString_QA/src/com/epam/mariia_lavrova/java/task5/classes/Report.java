@@ -9,5 +9,5 @@ package com.epam.mariia_lavrova.java.task5.classes;
 
 public interface Report {
     void printShortcutReport();
-    void printDetailReport();
+    void printDetailedReport();
 }
