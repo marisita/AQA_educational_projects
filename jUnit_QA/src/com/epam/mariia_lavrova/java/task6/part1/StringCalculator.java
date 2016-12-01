@@ -1,3 +1,8 @@
+/**
+ * @author Mariia_Lavrova
+ * @since 11/30/2016
+ */
+
 package com.epam.mariia_lavrova.java.task6.part1;
 
 public class StringCalculator {
@@ -15,7 +20,7 @@ public class StringCalculator {
             for (int i = 0; i < numbersArray.length; i++) {
                 if (numbersArray[i] < 0) {
                     exceptionMessage = exceptionMessage.concat(numbersArray[i] + " ");
-                } else if (numbersArray[i] < 1000) {
+                } else if (numbersArray[i] <= 1000) {
                     sum += Integer.parseInt(numbersCharacters[i]);
                 }
             }
@@ -29,9 +34,9 @@ public class StringCalculator {
     private String[] splitString(String numbers) {
 
         String[] numbersCharacters;
+        String delimiter;
 
         if (numbers.startsWith("//")) {
-            String delimiter;
             if (numbers.substring(2, 3).equals("[") && numbers.indexOf("]") > 3) {
                 delimiter = numbers.substring(3, numbers.indexOf("]"));
             } else {
@@ -39,7 +44,7 @@ public class StringCalculator {
             }
             numbersCharacters = numbers.substring(numbers.indexOf("\n") + 1).split(delimiter);
         } else {
-            String delimiter = ",|\n";
+            delimiter = ",|\n";
             numbersCharacters = numbers.split(delimiter);
         }
 

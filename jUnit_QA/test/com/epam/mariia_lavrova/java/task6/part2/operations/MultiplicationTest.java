@@ -1,3 +1,8 @@
+/**
+ * @author Mariia_Lavrova
+ * @since 11/30/2016
+ */
+
 package com.epam.mariia_lavrova.java.task6.part2.operations;
 
 import com.epam.mariia_lavrova.java.task6.part2.operations.factory.MyOperationFactory;

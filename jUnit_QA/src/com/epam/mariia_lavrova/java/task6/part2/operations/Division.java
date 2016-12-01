@@ -1,6 +1,6 @@
 /**
  * @author Mariia_Lavrova
- * @since 11/24/2016
+ * @since 11/30/2016
  */
 
 package com.epam.mariia_lavrova.java.task6.part2.operations;
@@ -8,21 +8,12 @@ package com.epam.mariia_lavrova.java.task6.part2.operations;
 public class Division implements Operation {
 
     @Override
-    public double execute(int a, int b) {
+    public double execute(int a, int b) throws IllegalArgumentException{
 
-        double divisionResult;
-
-        try {
-            if (b == 0) {
-                throw new IllegalArgumentException();
-            } else {
-                divisionResult = (double) a / b;
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
-            divisionResult = 0;
+        if (b == 0) {
+            throw new IllegalArgumentException("You can't divide by zero!");
+        } else {
+            return (double) a / b;
         }
-
-        return divisionResult;
     }
 }

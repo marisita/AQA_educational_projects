@@ -1,5 +1,5 @@
 /**
- * Class for using calculator and hierarchy of Household devices
+ * Class for using calculator
  *
  * @author Mariia_Lavrova
  * @since 11/24/2016
@@ -14,6 +14,6 @@ public class Demo {
     public static void main(String[] args) {
 
         Calculator calculator = new Calculator();
-        calculator.calculate();
+        calculator.runCalculator();
     }
 }

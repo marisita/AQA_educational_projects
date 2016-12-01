@@ -21,88 +21,84 @@ public class Calculator {
     private static final String RESULTS = "\nCalculating results: ";
     private static final String CONTINUE = "\nDo you want continue? y/n";
 
-    private int a;
-    private int b;
-    private int operationCode;
-    private double operationResult;
-
     private void printTask() {
         System.out.println(TASK);
     }
 
-    private void setMathExpression(Scanner scanner) {
+    private int[] setMathExpression(String mathExpression) {
 
-        System.out.println(INPUT_EXPRESSION);
-
+        int[] mathElements = new int[3];
         int signIndex = 0;
-        String mathExpression = scanner.nextLine();
         mathExpression = mathExpression.replaceAll(" ", "");
 
-        char[] temp = mathExpression.toCharArray();
+        for (int i = 1; i < mathExpression.length(); i++) {
 
-        for (int i = 1; i < temp.length; i++) {
-            if (temp[i] == '+') {
+            if (mathExpression.charAt(i) == '+') {
                 signIndex = i;
-                operationCode = 0;
+                mathElements[0] = 0;
                 break;
             }
-            if (temp[i] == '-') {
+            if (mathExpression.charAt(i) == '-') {
                 signIndex = i;
-                operationCode = 1;
+                mathElements[0] = 1;
                 break;
             }
-            if (temp[i] == '*') {
+            if (mathExpression.charAt(i) == '*') {
                 signIndex = i;
-                operationCode = 2;
+                mathElements[0] = 2;
                 break;
             }
-            if (temp[i] == '/') {
+            if (mathExpression.charAt(i) == '/') {
                 signIndex = i;
-                operationCode = 3;
+                mathElements[0] = 3;
                 break;
             }
         }
 
         try {
-            a = (int) Double.parseDouble(mathExpression.substring(0, signIndex));
-            b = (int) Double.parseDouble(mathExpression.substring(signIndex + 1, mathExpression.length()));
+            mathElements[1] = (int) Double.parseDouble(mathExpression.substring(0, signIndex));
+            mathElements[2] = (int) Double.parseDouble(mathExpression.substring(signIndex + 1, mathExpression.length()));
         } catch (NumberFormatException e) {
             System.err.println(WRONG_NUMBER);
         }
 
+        return mathElements;
     }
 
-
-    private void executeCalculation() {
-
-        MyOperationFactory factory = new MyOperationFactory();
-        Operation operation = factory.getOperation(operationCode);
-        operationResult = operation.execute(a, b);
-    }
-
-
-    private void printResult() {
+    private void printResult(double result) {
 
         System.out.println(RESULTS);
-        System.out.println(operationResult);
+        System.out.println(result);
     }
 
-
-    public void calculate() {
+    public void runCalculator() {
 
         printTask();
 
         Scanner scanner = new Scanner(System.in);
 
         do {
-            setMathExpression(scanner);
-            executeCalculation();
-            printResult();
+            System.out.println(INPUT_EXPRESSION);
+            String mathExpression = scanner.nextLine();
+            double operationResult = calculate(mathExpression);
+            printResult(operationResult);
             System.out.println(CONTINUE);
-        }
-
-        while (!scanner.nextLine().equals("n"));
+        } while (!scanner.nextLine().equals("n"));
 
         scanner.close();
+    }
+
+    public double calculate(String mathExpression) {
+
+        int[] mathElements = setMathExpression(mathExpression);
+        MyOperationFactory factory = new MyOperationFactory();
+        Operation operation = factory.getOperation(mathElements[0]);
+
+        try {
+            return operation.execute(mathElements[1], mathElements[2]);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            return 0;
+        }
     }
 }
