@@ -7,7 +7,9 @@
 
 package com.epam.mariia_lavrova.java.task5.main;
 
-import com.epam.mariia_lavrova.java.task5.classes.*;
+import com.epam.mariia_lavrova.java.task5.domain.*;
+import com.epam.mariia_lavrova.java.task5.domain.report.impl.Report;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -23,7 +25,8 @@ public class Demo {
         coursesStudent1.add(Course.JAVA_SERVLETS);
         coursesStudent1.add(Course.STRUTS_FRAMEWORK);
         Curriculum curriculumStudent1 = new Curriculum("J2EE Developer", coursesStudent1, startDate, student1);
-        curriculumStudent1.getReportType();
+        Report reportStudent1 = new Report(curriculumStudent1);
+        reportStudent1.getReportType();
 
 
         Student student2 = new Student("Anna", "Kvitka");
@@ -32,6 +35,7 @@ public class Demo {
         coursesStudent2.add(Course.LIBRARY_JFC_SWING);
         coursesStudent2.add(Course.JDBC);
         Curriculum curriculumStudent2 = new Curriculum("Java Developer", coursesStudent2, startDate, student2);
-        curriculumStudent2.getReportType();
+        Report reportStudent2 = new Report(curriculumStudent2);
+        reportStudent2.getReportType();
     }
 }

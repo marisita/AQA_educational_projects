@@ -5,9 +5,9 @@
  * @since 11/29/2016
  */
 
-package com.epam.mariia_lavrova.java.task5.classes;
+package com.epam.mariia_lavrova.java.task5.domain.report;
 
-public interface Report {
+public interface IReport {
     void printShortcutReport();
     void printDetailedReport();
 }
