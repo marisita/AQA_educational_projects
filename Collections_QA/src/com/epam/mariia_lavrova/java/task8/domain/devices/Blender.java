@@ -5,12 +5,17 @@
 
 package com.epam.mariia_lavrova.java.task8.domain.devices;
 import com.epam.mariia_lavrova.java.task8.domain.interfaces.KitchenDevice;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 
 public class Blender extends HouseholdDevice implements KitchenDevice, Serializable{
 
+    private static final Logger LOGGER = LogManager.getLogger(Blender.class);
+
     private final static String BLENDER = "Blender cut and shake food";
+    private final static String CUP_VOLUME = "\n - Cup volume: {} l";
 
     private double cupVolume;
 
@@ -29,12 +34,12 @@ public class Blender extends HouseholdDevice implements KitchenDevice, Serializa
 
     @Override
     public void prepareFood() {
-        System.out.println(BLENDER);
+        LOGGER.info(BLENDER);
     }
 
     @Override
     public void printDeviceCharacteristics() {
         super.printDeviceCharacteristics();
-        System.out.println(" - Cup volume: " + getCupVolume() + " l");
+        LOGGER.info(CUP_VOLUME, this.getCupVolume());
     }
 }

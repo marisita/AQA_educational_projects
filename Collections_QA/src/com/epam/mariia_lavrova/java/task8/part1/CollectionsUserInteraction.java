@@ -2,11 +2,14 @@ package com.epam.mariia_lavrova.java.task8.part1;
 
 import com.epam.mariia_lavrova.java.task8.part1.factory.impl.OperationFactory;
 import com.epam.mariia_lavrova.java.task8.part1.operation.Operation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
-public class UserUtilPart1 {
+public class CollectionsUserInteraction {
 
+    private static final Logger LOGGER = LogManager.getLogger(Operation.class);
     private static final String CONTINUE = "\nDo you want continue? y/n";
     private static final String OPERATION_CODE = "\nPlease input operation code: \n 1 - Frequency \n 2 - Length \n 3 - Duplicates";
     private static final String INPUT_FILE_PATH = "\nPlease input file path";
@@ -19,24 +22,23 @@ public class UserUtilPart1 {
 
         do {
             try {
-                System.out.println(INPUT_FILE_PATH);
+                LOGGER.info(INPUT_FILE_PATH);
                 String filePath = scanner.nextLine();
 
-                System.out.println(OPERATION_CODE);
+                LOGGER.info(OPERATION_CODE);
                 int operationCode = Integer.parseInt(scanner.nextLine());
 
                 OperationFactory operationFactory = new OperationFactory();
                 Operation operation = operationFactory.getOperation(operationCode);
 
-                //operation.setFilePath(filePath);
-                operation.setFilePath("input.txt");
+                operation.setFilePath(filePath);
                 operation.execute();
 
             } catch (NullPointerException | NumberFormatException e) {
-                System.err.println(INVALID_OPERATION_CODE);
+                LOGGER.error(INVALID_OPERATION_CODE);
             }
 
-            System.out.println(CONTINUE);
+            LOGGER.info(CONTINUE);
 
         } while (!OUT_CODE.equals(scanner.nextLine()));
 

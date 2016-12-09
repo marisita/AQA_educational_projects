@@ -1,13 +1,16 @@
 package com.epam.mariia_lavrova.java.task8.part1.operation;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Duplicates extends Operation {
 
+    private static final Logger LOGGER = LogManager.getLogger(Duplicates.class);
     private static final String DUPLICATE_WORDS = "\nDuplicate word in the file: ";
-    private static final String FILE_NOT_FOUND = "File not found";
 
     private List<Map.Entry<String, Integer>> getWordsAndRepeatsFromFile() {
 
@@ -35,7 +38,7 @@ public class Duplicates extends Operation {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println(FILE_NOT_FOUND);
+            LOGGER.error(e.getMessage());
         }
 
         return new LinkedList<>(wordsDuplicates.entrySet());
@@ -58,7 +61,9 @@ public class Duplicates extends Operation {
     @Override
     public void execute() {
         List<Map.Entry<String, Integer>> duplicateWords = getWordsAndRepeatsFromFile();
-        duplicateWords = sortWordsByLength(duplicateWords);
-        printWords(duplicateWords, DUPLICATE_WORDS);
+        if (!duplicateWords.isEmpty()) {
+            duplicateWords = sortWordsByLength(duplicateWords);
+            printWords(duplicateWords, DUPLICATE_WORDS);
+        }
     }
 }

@@ -26,11 +26,17 @@ public class HashBuilderAsSum {
 
         HashBuilderAsSum that = (HashBuilderAsSum) o;
 
-        return vendorCode != null ? vendorCode.equals(that.vendorCode) : that.vendorCode == null;
+        return vendorCode != null ? that.hashCode() == this.hashCode() : that.vendorCode == null;
     }
 
     @Override
     public int hashCode() {
-        return vendorCode != null ? getFirstTreeElementsSum() : 0;
+
+        int prime = 31;
+        int random = 100000 + (int) (Math.random() * ((999999 - 100000) + 1));
+
+        int hashCode = getFirstTreeElementsSum() * prime + random;
+
+        return vendorCode != null ? hashCode : 0;
     }
 }

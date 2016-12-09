@@ -8,6 +8,10 @@ public class HashBuilderAsLength {
         this.vendorCode = vendorCode;
     }
 
+    public int getVendorCodeLength() {
+        return vendorCode.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -15,11 +19,17 @@ public class HashBuilderAsLength {
 
         HashBuilderAsLength that = (HashBuilderAsLength) o;
 
-        return vendorCode != null ? vendorCode.equals(that.vendorCode) : that.vendorCode == null;
+        return vendorCode != null ? that.hashCode() == this.hashCode() : that.vendorCode == null;
     }
 
     @Override
     public int hashCode() {
-        return vendorCode != null ? vendorCode.length() : 0;
+
+        int prime = 31;
+        int random = 100000 + (int) (Math.random() * ((999999 - 100000) + 1));
+
+        int hashCode = getVendorCodeLength() * prime + random;
+
+        return vendorCode != null ? hashCode : 0;
     }
 }

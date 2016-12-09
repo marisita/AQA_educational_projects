@@ -5,19 +5,25 @@
 
 package com.epam.mariia_lavrova.java.task8.domain.devices;
 import com.epam.mariia_lavrova.java.task8.domain.interfaces.ElectricalDevice;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public abstract class HouseholdDevice implements ElectricalDevice {
+import java.io.Serializable;
+
+public abstract class HouseholdDevice implements ElectricalDevice, Serializable {
+
+    private static final Logger LOGGER = LogManager.getLogger(HouseholdDevice.class);
 
     private final static String DEVICE_IS_PLUGGED = "Device is plugged in";
     private final static String DEVICE_IS_NOT_PLUGGED = "Device is not plugged in";
     private final static String YOU_PLUG_IN_DEVICE = "You plug in this device";
     private final static String YOU_PLUG_OUT_DEVICE = "You plug out this device";
-    private final static String DEVICE_CHARACTERISTICS = "\nDevice characteristics: ";
+    private final static String DEVICE_CHARACTERISTICS = "\nDevice characteristics: \n - Name:  {} \n - Price:  {} $ \n - Power: {} W";
 
     private String name;
-    private double price;
+    private transient double price;
     private boolean pluggedIn;
-    private int power;
+    private static int power;
 
     public String getName() {
         return name;
@@ -55,34 +61,31 @@ public abstract class HouseholdDevice implements ElectricalDevice {
 
     public void printIsPluggedIn() {
         if (isPluggedIn()) {
-            System.out.println(DEVICE_IS_PLUGGED);
+            LOGGER.info(DEVICE_IS_PLUGGED);
         } else {
-            System.out.println(DEVICE_IS_NOT_PLUGGED);
+            LOGGER.info(DEVICE_IS_NOT_PLUGGED);
         }
     }
 
     @Override
     public void plugIn() {
         this.pluggedIn = true;
-        System.out.println(YOU_PLUG_IN_DEVICE);
+        LOGGER.info(YOU_PLUG_IN_DEVICE);
     }
 
     @Override
     public void plugOut() {
         this.pluggedIn = false;
-        System.out.println(YOU_PLUG_OUT_DEVICE);
+        LOGGER.info(YOU_PLUG_OUT_DEVICE);
     }
 
     @Override
     public void printDeviceCharacteristics() {
-        System.out.println(DEVICE_CHARACTERISTICS);
-        System.out.println(" - Name: " + getName());
-        System.out.println(" - Price: " + getPrice() + " $");
-        System.out.println(" - Power: " + getPower() + " W");
+        LOGGER.info(DEVICE_CHARACTERISTICS, name, price, power);
     }
 
     @Override
     public String toString() {
-        return "{" + name + " " + price + "$ " + power + "W}";
+        return "{" + getName() + " " + getPrice() + "$ " + getPower() + "W}";
     }
 }

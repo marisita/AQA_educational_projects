@@ -1,39 +1,58 @@
 package com.epam.mariia_lavrova.java.task8.part3;
 
 import com.epam.mariia_lavrova.java.task8.domain.devices.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DeviceSerialise {
+public class DeviceSerialise implements Serializable {
 
-    private HouseholdDevice[] householdDevice = new HouseholdDevice[10];
+    private static final Logger LOGGER = LogManager.getLogger(DeviceSerialise.class);
+
+    private List<HouseholdDevice> householdDevices = new ArrayList<>();
 
     public DeviceSerialise() {
-        householdDevice[0] = new Stove("Stove x3000", 500, 2000, 4);
-        householdDevice[1] = new Blender("Blender a8000", 20, 300, 1);
-        householdDevice[2] = new Vacuum("Vacuum LG a1", 100, 500, "ionic");
-        householdDevice[3] = new WashingMachine("Washing machine", 400, 1000, 12);
+        householdDevices.add(new Stove("Stove x3000", 500, 2000, 4));
+        householdDevices.add(new Stove("Stove x3000", 500, 2000, 4));
+        householdDevices.add(new Blender("Blender a8000", 20, 300, 1));
+        householdDevices.add(new Vacuum("Vacuum LG a1", 100, 500, "ionic"));
+        householdDevices.add(new WashingMachine("Washing machine", 400, 1000, 12));
     }
 
     public void serialise() {
+
         try {
-            DataOutputStream out = new DataOutputStream(new FileOutputStream("data.txt"));
 
-            for (int i = 0; i < householdDevice.length; i++) {
-                if (householdDevice[i] != null) {
-                    out.writeUTF("\n" + householdDevice[i].getName());
-                    out.writeUTF(String.valueOf(householdDevice[i].getPrice()));
-                    out.writeUTF(String.valueOf(householdDevice[i].getPower()));
-                }
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("output.txt"));
+
+            for (HouseholdDevice householdDevice : householdDevices) {
+                oos.writeObject(householdDevice);
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found");
-        } catch (IOException e) {
-            System.err.println("IO exception");
-        }
 
+            oos.close();
+
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
+
+    public void deserialize() {
+
+        try {
+            ObjectInputStream oin = new ObjectInputStream(new FileInputStream("output.txt"));
+            HouseholdDevice householdDevice;
+
+            while ((householdDevice = (HouseholdDevice) oin.readObject()) != null) {
+                householdDevice.printDeviceCharacteristics();
+            }
+
+            oin.close();
+
+        } catch (IOException | ClassNotFoundException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 }

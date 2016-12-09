@@ -6,17 +6,21 @@
 package com.epam.mariia_lavrova.java.task8.domain.devices;
 
 import com.epam.mariia_lavrova.java.task8.domain.interfaces.CleaningDevice;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 
 public class Vacuum extends HouseholdDevice implements CleaningDevice, Serializable {
 
+    private static final Logger LOGGER = LogManager.getLogger(Vacuum.class);
+
     private final static String VACUUM = "Vacuum cleans floors and carpet";
+    private static final String FILTER_TYPE = "\n - FilterType: {}";
 
     private String filterType;
 
     public String getFilterType() {
-
         return filterType;
     }
 
@@ -31,12 +35,12 @@ public class Vacuum extends HouseholdDevice implements CleaningDevice, Serializa
 
     @Override
     public void clean() {
-        System.out.println(VACUUM);
+        LOGGER.info(VACUUM);
     }
 
     @Override
     public void printDeviceCharacteristics() {
         super.printDeviceCharacteristics();
-        System.out.println(" - FilterType: " + getFilterType());
+        LOGGER.info(FILTER_TYPE, this.getFilterType());
     }
 }

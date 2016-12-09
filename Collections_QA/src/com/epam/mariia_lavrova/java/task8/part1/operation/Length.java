@@ -1,13 +1,17 @@
 package com.epam.mariia_lavrova.java.task8.part1.operation;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Length extends Operation {
 
+    private static final Logger LOGGER = LogManager.getLogger(Length.class);
+
     private static final String LONGEST_WORDS = "\nThe longest words in the file: ";
-    private static final String FILE_NOT_FOUND = "\nFile not found";
     private static final int SLICED_NUMBER = 3;
 
     private List<Map.Entry<String, Integer>> getWordsAndLengthFromFile() {
@@ -19,9 +23,8 @@ public class Length extends Operation {
                 String word = scanner.useDelimiter("\\s+").next();
                 words.put(word, word.length());
             }
-            System.out.println(words);
         } catch (FileNotFoundException e) {
-            System.out.println(FILE_NOT_FOUND);
+            LOGGER.error(e.getMessage());
         }
 
         return new LinkedList<>(words.entrySet());
@@ -35,8 +38,10 @@ public class Length extends Operation {
     @Override
     public void execute() {
         List<Map.Entry<String, Integer>> longestWords = getWordsAndLengthFromFile();
-        longestWords = sortWordsByLength(longestWords);
-        longestWords = sliceWords(longestWords, SLICED_NUMBER);
-        printWords(longestWords, LONGEST_WORDS);
+        if (!longestWords.isEmpty()) {
+            longestWords = sortWordsByLength(longestWords);
+            longestWords = sliceWords(longestWords, SLICED_NUMBER);
+            printWords(longestWords, LONGEST_WORDS);
+        }
     }
 }

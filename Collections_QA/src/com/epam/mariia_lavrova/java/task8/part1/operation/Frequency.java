@@ -1,13 +1,17 @@
 package com.epam.mariia_lavrova.java.task8.part1.operation;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Frequency extends Operation {
 
+    private static final Logger LOGGER = LogManager.getLogger(Operation.class);
+
     private static final String MOST_COMMON_WORDS = "\nThe most common words in the file: ";
-    private static final String FILE_NOT_FOUND = "\nFile not found";
     private static final int SLICED_NUMBER = 2;
 
     private List<Map.Entry<String, Integer>> getWordsAndRepeatsFromFile() {
@@ -25,7 +29,7 @@ public class Frequency extends Operation {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println(FILE_NOT_FOUND);
+            LOGGER.error(e.getMessage());
         }
 
         return new LinkedList<>(words.entrySet());
@@ -44,9 +48,11 @@ public class Frequency extends Operation {
     @Override
     public void execute() {
         List<Map.Entry<String, Integer>> commonWords = getWordsAndRepeatsFromFile();
-        commonWords = sortWordsByRepeatNumber(commonWords);
-        commonWords = sliceWords(commonWords, SLICED_NUMBER);
-        commonWords = sortWordsDescending(commonWords);
-        printWords(commonWords, MOST_COMMON_WORDS);
+        if (!commonWords.isEmpty()) {
+            commonWords = sortWordsByRepeatNumber(commonWords);
+            commonWords = sliceWords(commonWords, SLICED_NUMBER);
+            commonWords = sortWordsDescending(commonWords);
+            printWords(commonWords, MOST_COMMON_WORDS);
+        }
     }
 }
