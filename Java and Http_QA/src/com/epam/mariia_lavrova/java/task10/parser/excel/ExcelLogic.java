@@ -1,6 +1,5 @@
 package com.epam.mariia_lavrova.java.task10.parser.excel;
 
-import com.epam.mariia_lavrova.java.task10.constant.Constants;
 import com.epam.mariia_lavrova.java.task10.parser.xml.domain.Ticket;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,6 +15,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.epam.mariia_lavrova.java.task10.constant.Constants.*;
+
 public class ExcelLogic {
 
     private static final Logger LOGGER = LogManager.getLogger(ExcelLogic.class);
@@ -24,7 +25,7 @@ public class ExcelLogic {
 
     private void getPremiumTicketsFromJSON() throws IOException {
         Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader(Constants.PREMIUM_TICKETS_JSON));
+        BufferedReader br = new BufferedReader(new FileReader(OUTPUT_FOLDER + PREMIUM_TICKETS_JSON));
         premiumTickets = gson.fromJson(br, new TypeToken<List<Ticket>>() {
         }.getType());
     }
@@ -50,7 +51,7 @@ public class ExcelLogic {
             row.createCell(4).setCellValue(ticket.getPlace());
         }
 
-        workbook.write(new FileOutputStream(Constants.PREMIUM_TICKETS_XLS));
+        workbook.write(new FileOutputStream(OUTPUT_FOLDER + PREMIUM_TICKETS_XLS));
         workbook.close();
     }
 

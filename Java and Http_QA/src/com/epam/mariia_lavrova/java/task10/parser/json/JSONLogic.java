@@ -1,8 +1,6 @@
 package com.epam.mariia_lavrova.java.task10.parser.json;
 
-import com.epam.mariia_lavrova.java.task10.constant.Constants;
-import com.epam.mariia_lavrova.java.task10.parser.xml.domain.Ticket;
-import com.epam.mariia_lavrova.java.task10.parser.xml.domain.Tickets;
+import com.epam.mariia_lavrova.java.task10.parser.xml.domain.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epam.mariia_lavrova.java.task10.constant.Constants.*;
+
 public class JSONLogic {
 
     private static final Logger LOGGER = LogManager.getLogger(JSONLogic.class);
@@ -26,7 +26,7 @@ public class JSONLogic {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Tickets.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            tickets = (Tickets) jaxbUnmarshaller.unmarshal(new File(Constants.TICKETS_XML));
+            tickets = (Tickets) jaxbUnmarshaller.unmarshal(new File(OUTPUT_FOLDER + TICKETS_XML));
         } catch (JAXBException e) {
             LOGGER.error(e.getMessage());
         }
@@ -38,7 +38,7 @@ public class JSONLogic {
         List<Ticket> premiumTickets = new ArrayList<>();
         try {
             for (Ticket ticket : tickets) {
-                if (ticket.getCategory().equals(Constants.CATEGORY)) {
+                if (ticket.getCategory().equals(CATEGORY)) {
                     premiumTickets.add(ticket);
                 }
             }
@@ -53,7 +53,7 @@ public class JSONLogic {
 
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        File newFile = new File(Constants.PREMIUM_TICKETS_JSON);
+        File newFile = new File(OUTPUT_FOLDER + PREMIUM_TICKETS_JSON);
         try (FileWriter fileWriter = new FileWriter(newFile, false)) {
             fileWriter.write(gson.toJson(premiumTickets));
         } catch (IOException e) {
