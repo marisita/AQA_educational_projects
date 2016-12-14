@@ -1,6 +1,7 @@
 package com.epam.mariia_lavrova.java.task10.parser.excel;
 
-import com.epam.mariia_lavrova.java.task10.parser.xml.domain.Ticket;
+import com.epam.mariia_lavrova.java.task10.parser.IParser;
+import com.epam.mariia_lavrova.java.task10.parser.domain.Ticket;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.logging.log4j.LogManager;
@@ -17,17 +18,18 @@ import java.util.List;
 
 import static com.epam.mariia_lavrova.java.task10.constant.Constants.*;
 
-public class ExcelLogic {
+public class ExcelHelper implements IParser{
 
-    private static final Logger LOGGER = LogManager.getLogger(ExcelLogic.class);
+    private static final Logger LOGGER = LogManager.getLogger(ExcelHelper.class);
 
     private List<Ticket> premiumTickets;
 
     private void getPremiumTicketsFromJSON() throws IOException {
         Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader(OUTPUT_FOLDER + PREMIUM_TICKETS_JSON));
-        premiumTickets = gson.fromJson(br, new TypeToken<List<Ticket>>() {
-        }.getType());
+        try (BufferedReader br = new BufferedReader(new FileReader(OUTPUT_FOLDER + PREMIUM_TICKETS_JSON))) {
+            premiumTickets = gson.fromJson(br, new TypeToken<List<Ticket>>() {
+            }.getType());
+        }
     }
 
     private void writePremiumTicketsToXLS() throws IOException {
@@ -89,7 +91,8 @@ public class ExcelLogic {
         sheet.setColumnWidth(4, 3000);
     }
 
-    public void writePremiumTicketsFromJsonToXls() {
+    @Override
+    public void write() {
         try {
             getPremiumTicketsFromJSON();
             writePremiumTicketsToXLS();

@@ -1,4 +1,4 @@
-package com.epam.mariia_lavrova.java.task10.parser.xml.domain;
+package com.epam.mariia_lavrova.java.task10.parser.domain;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

@@ -1,6 +1,7 @@
 package com.epam.mariia_lavrova.java.task10.parser.json;
 
-import com.epam.mariia_lavrova.java.task10.parser.xml.domain.*;
+import com.epam.mariia_lavrova.java.task10.parser.IParser;
+import com.epam.mariia_lavrova.java.task10.parser.domain.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -17,11 +18,12 @@ import java.util.List;
 
 import static com.epam.mariia_lavrova.java.task10.constant.Constants.*;
 
-public class JSONLogic {
+public class JSONHelper implements IParser{
 
-    private static final Logger LOGGER = LogManager.getLogger(JSONLogic.class);
+    private static final Logger LOGGER = LogManager.getLogger(JSONHelper.class);
 
     private List<Ticket> getTicketsFromXML() {
+
         Tickets tickets = null;
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Tickets.class);
@@ -36,6 +38,15 @@ public class JSONLogic {
     private List<Ticket> findPremiumTickets(List<Ticket> tickets) {
 
         List<Ticket> premiumTickets = new ArrayList<>();
+        if (!tickets.isEmpty()) {
+            for (Ticket ticket : tickets) {
+                if (ticket.getCategory().equals(CATEGORY)) {
+                    premiumTickets.add(ticket);
+                }
+            }
+        } else {
+            LOGGER.info("There is no premium tickets");
+        }
         try {
             for (Ticket ticket : tickets) {
                 if (ticket.getCategory().equals(CATEGORY)) {
@@ -54,6 +65,7 @@ public class JSONLogic {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         File newFile = new File(OUTPUT_FOLDER + PREMIUM_TICKETS_JSON);
+
         try (FileWriter fileWriter = new FileWriter(newFile, false)) {
             fileWriter.write(gson.toJson(premiumTickets));
         } catch (IOException e) {
@@ -61,8 +73,8 @@ public class JSONLogic {
         }
     }
 
-    public void writePremiumTicketsFromXMLToJSON() {
-
+    @Override
+    public void write() {
         List<Ticket> tickets = getTicketsFromXML();
         List<Ticket> premiumTickets = findPremiumTickets(tickets);
         writeTicketsToJSON(premiumTickets);
