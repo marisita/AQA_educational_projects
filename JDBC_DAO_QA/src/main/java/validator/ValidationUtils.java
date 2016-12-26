@@ -1,8 +1,5 @@
 package validator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,10 +9,10 @@ public class ValidationUtils {
 	private static final String FIRSTNAME_OR_LASTNAME_FORBIDDEN_SYMBOLS = "[^A-Za-z]";
 	private static final String EMAIL_MATCHES_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*"
 			+ "@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private static final int MIN_PASSWORD_LENGTH = 5;
-	private static final int MAX_PASSWORD_LENGTH = 20;
-	private static final int MIN_LOGIN_LENGTH = 5;
+	private static final int MIN_LOGIN_LENGTH = 4;
 	private static final int MAX_LOGIN_LENGTH = 20;
+	private static final int MIN_PASSWORD_LENGTH = 4;
+	private static final int MAX_PASSWORD_LENGTH = 20;
 
 	public static boolean isLoginOrPasswordNotContainForbiddenSymbol(String line) {
 

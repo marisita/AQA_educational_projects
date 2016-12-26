@@ -13,7 +13,7 @@ public class RegisterValidator {
 
     private static final Logger LOGGER = LogManager.getLogger(RegisterValidator.class);
 
-    public static List<String> validate(UserBean userBean) {
+    public List<String> validate(UserBean userBean) {
         List<String> errors = new ArrayList<>();
         errors.addAll(validateLogin(userBean.getLogin()));
         errors.addAll(validatePassword(userBean.getPassword(), userBean.getRepeatedPassword()));
@@ -23,7 +23,7 @@ public class RegisterValidator {
         return errors;
     }
 
-    private static List<String> validateLogin(String login) {
+    private List<String> validateLogin(String login) {
 
         List<String> errors = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class RegisterValidator {
         return errors;
     }
 
-    private static List<String> validatePassword(String password, String repeatedPassword) {
+    private List<String> validatePassword(String password, String repeatedPassword) {
 
         List<String> errors = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class RegisterValidator {
         return errors;
     }
 
-    private static List<String> validateFirstName(String firstName) {
+    private List<String> validateFirstName(String firstName) {
 
         List<String> errors = new ArrayList<>();
 
@@ -82,7 +82,7 @@ public class RegisterValidator {
         return errors;
     }
 
-    private static List<String> validateLastName(String lastName) {
+    private List<String> validateLastName(String lastName) {
 
         List<String> errors = new ArrayList<>();
 
@@ -98,7 +98,7 @@ public class RegisterValidator {
         return errors;
     }
 
-    private static List<String> validateEmail(String email) {
+    private List<String> validateEmail(String email) {
 
         List<String> errors = new ArrayList<>();
 

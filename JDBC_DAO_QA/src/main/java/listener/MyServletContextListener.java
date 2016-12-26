@@ -1,6 +1,5 @@
 package listener;
 
-import constants.MyAttribute;
 import dao.UserDaoSql;
 import dao.api.UserDao;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +16,7 @@ import javax.sql.DataSource;
 
 import static constants.LoggerInfoMessage.CONTEXT_DESTROYED;
 import static constants.LoggerInfoMessage.CONTEXT_STARTED;
+import static constants.MyAttribute.MyServletContextListener.*;
 
 public class MyServletContextListener implements ServletContextListener {
 
@@ -28,12 +28,12 @@ public class MyServletContextListener implements ServletContextListener {
         try {
             DataSource dataSource = (DataSource)new InitialContext().lookup("java:comp/env/jdbc/users");
             UserDao userDao = new UserDaoSql(dataSource);
-            servletContextEvent.getServletContext().setAttribute("userDao", userDao);
 
+            servletContextEvent.getServletContext().setAttribute(USER_DAO, userDao);
             UserService userService = new UserServiceImpl(userDao);
 
             ServletContext servletContext = servletContextEvent.getServletContext();
-            servletContext.setAttribute(MyAttribute.MyServletContextListener.USER_SERVICE, userService);
+            servletContext.setAttribute(USER_SERVICE, userService);
 
         } catch (NamingException e) {
             throw new RuntimeException(e);

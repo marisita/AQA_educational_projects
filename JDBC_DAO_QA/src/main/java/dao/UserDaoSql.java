@@ -9,16 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
+import static constants.SQLAttribute.SQLColumnName.*;
+import static constants.SQLAttribute.SQLStatements.*;
 
 public class UserDaoSql implements UserDao {
 
     private DataSource dataSource;
-
-    private static final java.lang.String LOGIN_USER = "SELECT * FROM user WHERE login=? AND password=?";
-    private static final java.lang.String REGISTER_USER = "INSERT INTO `users`.`user` (`login`, `password`, `firstName`, `lastName`, `email`, `sex`) VALUES (?, ?, ?, ?, ?, ?);";
-    private static final java.lang.String IS_USER_EXIST = "SELECT * FROM user WHERE login=?";
-    private static final java.lang.String GET_USERS = "SELECT * FROM user";
 
     public UserDaoSql(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -28,7 +25,7 @@ public class UserDaoSql implements UserDao {
     public User login(String login, String password) throws DBException {
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(LOGIN_USER)) {
+             PreparedStatement pstmt = connection.prepareStatement(LOGIN_USER_STATEMENT)) {
 
             pstmt.setString(1, login);
             pstmt.setString(2, password);
@@ -37,13 +34,13 @@ public class UserDaoSql implements UserDao {
 
             if (resultSet.next()) {
                 User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("login"));
-                user.setPassword(resultSet.getString("password"));
-                user.setFirstName(resultSet.getString("firstName"));
-                user.setLastName(resultSet.getString("lastName"));
-                user.setEmail(resultSet.getString("email"));
-                user.setSex(resultSet.getString("sex"));
+                user.setId(resultSet.getInt(ID_COLUMN));
+                user.setLogin(resultSet.getString(LOGIN_COLUMN));
+                user.setPassword(resultSet.getString(PASSWORD_COLUMN));
+                user.setFirstName(resultSet.getString(FIRST_NAME_COLUMN));
+                user.setLastName(resultSet.getString(LAST_NAME_COLUMN));
+                user.setEmail(resultSet.getString(EMAIL_COLUMN));
+                user.setSex(resultSet.getString(SEX_COLUMN));
                 resultSet.close();
                 return user;
             }
@@ -58,7 +55,7 @@ public class UserDaoSql implements UserDao {
     public User register(User user) throws DBException {
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(REGISTER_USER)) {
+             PreparedStatement pstmt = connection.prepareStatement(REGISTER_USER_STATEMENT)) {
 
             pstmt.setString(1, user.getLogin());
             pstmt.setString(2, user.getPassword());
@@ -83,7 +80,7 @@ public class UserDaoSql implements UserDao {
     public boolean isUserExist(String login) throws DBException {
 
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement pstmt = connection.prepareStatement(IS_USER_EXIST)) {
+        PreparedStatement pstmt = connection.prepareStatement(IS_USER_EXIST_STATEMENT)) {
 
             pstmt.setString(1, login);
 
@@ -98,35 +95,5 @@ public class UserDaoSql implements UserDao {
         }
 
         return false;
-    }
-
-    @Override
-    public HashMap<String, User> getUsers() throws DBException {
-
-        HashMap<String, User> users = new HashMap<>();
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(GET_USERS)) {
-
-            ResultSet resultSet = pstmt.executeQuery();
-
-            while (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("login"));
-                user.setPassword(resultSet.getString("password"));
-                user.setFirstName(resultSet.getString("firstName"));
-                user.setLastName(resultSet.getString("lastName"));
-                user.setEmail(resultSet.getString("email"));
-                user.setSex(resultSet.getString("sex"));;
-                users.put(String.valueOf(user.getId()), user);
-            }
-            resultSet.close();
-
-        } catch (SQLException e) {
-            throw new DBException(e.getMessage());
-        }
-
-        return users;
     }
 }

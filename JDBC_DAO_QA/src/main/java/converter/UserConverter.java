@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UserConverter {
 
-    public static UserBean convert(HttpServletRequest request) {
+    public UserBean convert(HttpServletRequest request) {
 
         String login = request.getParameter(FormBean.RegisterParameters.LOGIN);
         String password = request.getParameter(FormBean.RegisterParameters.PASSWORD);
@@ -21,7 +21,7 @@ public class UserConverter {
         return  new UserBean(login, password, repeatedPassword, firstName, lastName, email, sex);
     }
 
-    public static UserBean convert(User user) {
+    public UserBean convert(User user) {
 
         String login = user.getLogin();
         String firstName = user.getFirstName();
@@ -32,7 +32,7 @@ public class UserConverter {
         return new UserBean(login, null, null, firstName, lastName, email, sex);
     }
 
-    public static User convert(UserBean userBean) {
+    public User convert(UserBean userBean) {
 
         String login = userBean.getLogin();
         String password = userBean.getPassword();

@@ -49,7 +49,8 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             LOGGER.info(USER_WAS_LOGGED + user);
-            UserBean userBean = UserConverter.convert(user);
+            UserConverter userConverter = new UserConverter();
+            UserBean userBean = userConverter.convert(user);
             LOGGER.info(USER_WAS_CONVERTED_FROM_DOMAIN + user);
             request.setAttribute(FormBean.Attributes.LOGIN_FORM_BEAN, userBean);
             getServletContext().getRequestDispatcher(LOGIN_SUCCESSFULLY_URL).forward(request, response);

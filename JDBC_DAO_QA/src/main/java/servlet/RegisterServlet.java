@@ -44,9 +44,12 @@ public class RegisterServlet extends HttpServlet {
         UserService userService = (UserServiceImpl) request.getServletContext().getAttribute(MyAttribute.MyServletContextListener.USER_SERVICE);
         List<String> errors = new ArrayList<>();
 
-        UserBean userBean = UserConverter.convert(request);
+        UserConverter userConverter = new UserConverter();
+        UserBean userBean = userConverter.convert(request);
         LOGGER.info(USER_WAS_CONVERTED_FROM_REQUEST + userBean);
-        errors.addAll(RegisterValidator.validate(userBean));
+
+        RegisterValidator registerValidator = new RegisterValidator();
+        errors.addAll(registerValidator.validate(userBean));
 
         if (!errors.isEmpty()) {
             LOGGER.error(errors);
@@ -56,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        User user = UserConverter.convert(userBean);
+        User user = userConverter.convert(userBean);
         LOGGER.info(USER_WAS_CONVERTED_FROM_BEAN + user);
         User registeredUser = null;
 

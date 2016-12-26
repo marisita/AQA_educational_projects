@@ -8,8 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import service.api.UserService;
 
-import java.util.HashMap;
-
 import static constants.ExceptionMessage.USER_WITH_THIS_LOGIN_EXIST;
 
 public class UserServiceImpl implements UserService {
@@ -66,20 +64,4 @@ public class UserServiceImpl implements UserService {
 
         return isExist;
     }
-
-    @Override
-    public HashMap<String, User> getUsers(){
-
-        HashMap<String, User> users = null;
-
-        try {
-            users = userDao.getUsers();
-        } catch (DBException e) {
-            LOGGER.error(e.getMessage());
-        }
-
-        return users;
-    }
-
-
 }
