@@ -27,15 +27,6 @@ public final class ValidatorMessage {
         }
     }
 
-    public static final class LogIn {
-
-        public static final String INVALID_LOGIN_OR_PASSWORD = "Invalid login or password";
-
-        private LogIn() {
-
-        }
-    }
-
     private ValidatorMessage() {
     }
 }

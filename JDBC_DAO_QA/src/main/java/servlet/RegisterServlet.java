@@ -5,8 +5,10 @@ import constants.MyAttribute;
 import converter.UserConverter;
 import domain.User;
 import exception.UserExistException;
+import exception.UserNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import property.PropertyFactory;
 import service.UserServiceImpl;
 import service.api.UserService;
 import servlet.bean.ErrorBean;
@@ -23,9 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static constants.LoggerInfoMessage.*;
-import static constants.MyUrl.ERROR_URL;
-import static constants.MyUrl.REGISTER_SUCCESSFULLY_URL;
-import static constants.ExceptionMessage.DB_ERROR;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -55,30 +54,24 @@ public class RegisterServlet extends HttpServlet {
             LOGGER.error(errors);
             ErrorBean errorBean = new ErrorBean(errors.toString());
             request.setAttribute(FormBean.Attributes.ERROR_FORM_BEAN, errorBean);
-            getServletContext().getRequestDispatcher(ERROR_URL).forward(request, response);
+            getServletContext().getRequestDispatcher(PropertyFactory.getProperty("errorUrl")).forward(request, response);
             return;
         }
 
         User user = userConverter.convert(userBean);
         LOGGER.info(USER_WAS_CONVERTED_FROM_BEAN + user);
-        User registeredUser = null;
 
         try {
-            registeredUser = userService.register(user);
-        } catch (UserExistException e) {
-            errors.add(e.getMessage());
-        }
-
-        if (registeredUser != null) {
+            User registeredUser = userService.register(user);
             LOGGER.info(USER_WAS_REGISTERED + registeredUser);
             request.setAttribute(FormBean.Attributes.REGISTER_FORM_BEAN, userBean);
-            getServletContext().getRequestDispatcher(REGISTER_SUCCESSFULLY_URL).forward(request, response);
-        } else {
-            errors.add(DB_ERROR);
+            getServletContext().getRequestDispatcher(PropertyFactory.getProperty("registerSuccessfullyUrl")).forward(request, response);
+        } catch (UserExistException | UserNotFoundException e) {
+            errors.add(e.getMessage());
             LOGGER.error(errors);
             ErrorBean errorBean = new ErrorBean(errors.toString());
             request.setAttribute(FormBean.Attributes.ERROR_FORM_BEAN, errorBean);
-            getServletContext().getRequestDispatcher(ERROR_URL).forward(request, response);
+            getServletContext().getRequestDispatcher(PropertyFactory.getProperty("errorUrl")).forward(request, response);
         }
     }
 }

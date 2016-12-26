@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static constants.SQLAttribute.SQLColumnName.*;
-import static constants.SQLAttribute.SQLStatements.*;
+import static constants.SQLAttribute.SQLStatement.*;
 
 public class UserDaoSql implements UserDao {
 

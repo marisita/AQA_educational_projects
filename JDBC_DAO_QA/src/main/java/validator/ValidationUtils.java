@@ -16,26 +16,17 @@ public class ValidationUtils {
 
 	public static boolean isLoginOrPasswordNotContainForbiddenSymbol(String line) {
 
-		String regexp = LOGIN_OR_PASSWORD_FORBIDDEN_SYMBOLS;
-		Pattern pattern = Pattern.compile(regexp);
-		Matcher matcher = pattern.matcher(line);
-		return !matcher.find();
+		return validate(line, LOGIN_OR_PASSWORD_FORBIDDEN_SYMBOLS);
 	}
 
 	public static boolean isFirstNameOrLastNameNotContainForbiddenSymbol(String line) {
 
-		String regexp = FIRSTNAME_OR_LASTNAME_FORBIDDEN_SYMBOLS;
-		Pattern pattern = Pattern.compile(regexp);
-		Matcher matcher = pattern.matcher(line);
-		return !matcher.find();
+		return validate(line, FIRSTNAME_OR_LASTNAME_FORBIDDEN_SYMBOLS);
 	}
 
 	public static boolean isEmailMatchPattern(String line) {
 
-		String regexp = EMAIL_MATCHES_PATTERN;
-		Pattern pattern = Pattern.compile(regexp);
-		Matcher matcher = pattern.matcher(line);
-		return matcher.find();
+		return !validate(line, EMAIL_MATCHES_PATTERN);
 	}
 
 	public static boolean isNotEmpty(String line) {
@@ -47,10 +38,16 @@ public class ValidationUtils {
 	}
 
 	public static boolean isPasswordHasValidLength(String password) {
-		return  password.length() >= MIN_PASSWORD_LENGTH && password.length() <= MAX_PASSWORD_LENGTH;
+		return password.length() >= MIN_PASSWORD_LENGTH && password.length() <= MAX_PASSWORD_LENGTH;
 	}
 
 	public static boolean isLoginHasValidLength(String login) {
-		return  login.length() >= MIN_LOGIN_LENGTH && login.length() <= MAX_LOGIN_LENGTH;
+		return login.length() >= MIN_LOGIN_LENGTH && login.length() <= MAX_LOGIN_LENGTH;
+	}
+
+	private static boolean validate(String line, String regexp) {
+		Pattern pattern = Pattern.compile(regexp);
+		Matcher matcher = pattern.matcher(line);
+		return !matcher.find();
 	}
 }

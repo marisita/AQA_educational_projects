@@ -4,8 +4,10 @@ import constants.FormBean;
 import constants.MyAttribute;
 import converter.UserConverter;
 import domain.User;
+import exception.UserNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import property.PropertyFactory;
 import service.UserServiceImpl;
 import service.api.UserService;
 import servlet.bean.ErrorBean;
@@ -20,11 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static constants.LoggerInfoMessage.USER_WAS_CONVERTED_FROM_DOMAIN;
-import static constants.LoggerInfoMessage.USER_WAS_LOGGED;
-import static constants.MyUrl.ERROR_URL;
-import static constants.MyUrl.LOGIN_SUCCESSFULLY_URL;
-import static constants.ValidatorMessage.LogIn.INVALID_LOGIN_OR_PASSWORD;
+import static constants.LoggerInfoMessage.*;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -45,21 +43,21 @@ public class LoginServlet extends HttpServlet {
 
         String login = request.getParameter(FormBean.LoginParameters.LOGIN);
         String password = request.getParameter(FormBean.LoginParameters.PASSWORD);
-        User user = userService.login(login, password);
 
-        if (user != null) {
+        try {
+            User user = userService.login(login, password);
             LOGGER.info(USER_WAS_LOGGED + user);
             UserConverter userConverter = new UserConverter();
             UserBean userBean = userConverter.convert(user);
             LOGGER.info(USER_WAS_CONVERTED_FROM_DOMAIN + user);
             request.setAttribute(FormBean.Attributes.LOGIN_FORM_BEAN, userBean);
-            getServletContext().getRequestDispatcher(LOGIN_SUCCESSFULLY_URL).forward(request, response);
-        } else {
-            LOGGER.error(INVALID_LOGIN_OR_PASSWORD);
-            errors.add(INVALID_LOGIN_OR_PASSWORD);
+            getServletContext().getRequestDispatcher(PropertyFactory.getProperty("loginSuccessfullyUrl")).forward(request, response);
+        } catch (UserNotFoundException e){
+            LOGGER.error(e.getMessage());
+            errors.add(e.getMessage());
             ErrorBean errorBean = new ErrorBean(errors.toString());
             request.setAttribute(FormBean.Attributes.ERROR_FORM_BEAN, errorBean);
-            getServletContext().getRequestDispatcher(ERROR_URL).forward(request, response);
+            getServletContext().getRequestDispatcher(PropertyFactory.getProperty("errorUrl")).forward(request, response);
         }
     }
 }

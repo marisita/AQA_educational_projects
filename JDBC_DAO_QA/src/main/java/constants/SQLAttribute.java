@@ -17,13 +17,13 @@ public final class SQLAttribute {
         }
     }
 
-    public final class SQLStatements {
+    public final class SQLStatement {
 
         public static final String LOGIN_USER_STATEMENT = "SELECT * FROM user WHERE login=? AND password=?";
         public static final String REGISTER_USER_STATEMENT = "INSERT INTO `users`.`user` (`login`, `password`, `firstName`, `lastName`, `email`, `sex`) VALUES (?, ?, ?, ?, ?, ?);";
         public static final String IS_USER_EXIST_STATEMENT = "SELECT * FROM user WHERE login=?";
 
-        private SQLStatements() {
+        private SQLStatement() {
 
         }
     }

@@ -4,11 +4,12 @@ import dao.api.UserDao;
 import domain.User;
 import exception.DBException;
 import exception.UserExistException;
+import exception.UserNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import service.api.UserService;
 
-import static constants.ExceptionMessage.USER_WITH_THIS_LOGIN_EXIST;
+import static constants.ExceptionMessage.*;
 
 public class UserServiceImpl implements UserService {
 
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(String login, String password) {
+    public User login(String login, String password) throws UserNotFoundException {
 
         User user = null;
 
@@ -31,11 +32,15 @@ public class UserServiceImpl implements UserService {
             LOGGER.error(e.getMessage());
         }
 
-        return user;
+        if (user != null) {
+            return user;
+        } else {
+            throw new UserNotFoundException(INVALID_LOGIN_OR_PASSWORD);
+        }
     }
 
     @Override
-    public synchronized User register(User user) throws UserExistException {
+    public synchronized User register(User user) throws UserExistException, UserNotFoundException {
 
         User registeredUser = null;
 
@@ -48,7 +53,12 @@ public class UserServiceImpl implements UserService {
                 LOGGER.error(e.getMessage());
             }
         }
-        return registeredUser;
+
+        if (registeredUser != null) {
+            return registeredUser;
+        } else {
+            throw new UserNotFoundException(CANNON_INSERT_USER);
+        }
     }
 
     @Override

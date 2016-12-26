@@ -34,4 +34,7 @@ public final class FormBean {
         private RegisterParameters(){
         }
     }
+
+    private FormBean() {
+    }
 }

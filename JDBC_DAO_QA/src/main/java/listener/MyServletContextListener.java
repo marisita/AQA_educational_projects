@@ -4,6 +4,7 @@ import dao.UserDaoSql;
 import dao.api.UserDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import property.PropertyFactory;
 import service.UserServiceImpl;
 import service.api.UserService;
 
@@ -26,7 +27,8 @@ public class MyServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
 
         try {
-            DataSource dataSource = (DataSource)new InitialContext().lookup("java:comp/env/jdbc/users");
+            PropertyFactory.getInstance();
+            DataSource dataSource = (DataSource)new InitialContext().lookup(PropertyFactory.getProperty("dataSourcePath"));
             UserDao userDao = new UserDaoSql(dataSource);
 
             servletContextEvent.getServletContext().setAttribute(USER_DAO, userDao);
