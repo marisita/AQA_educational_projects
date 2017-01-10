@@ -27,10 +27,10 @@ public class WhenGetExistingProductThenReturnsNotEmptyFields {
     public void setUp() throws Exception {
 
         productID = 10;
-        productURL = HOME_URL + PRODUCT_URL;
+        productURL = HOME_URL.concat(PRODUCT_URL);
 
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(productURL + productID);
+        HttpGet request = new HttpGet(productURL.concat(String.valueOf(productID)));
         request.addHeader(APACHE_HTTP_CLIENT, USER_AGENT);
         HttpResponse response = client.execute(request);
         xmlResponse = XMLParser.parse(response);

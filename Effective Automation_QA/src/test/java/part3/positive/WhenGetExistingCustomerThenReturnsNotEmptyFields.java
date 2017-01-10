@@ -27,10 +27,10 @@ public class WhenGetExistingCustomerThenReturnsNotEmptyFields {
     public void setUp() throws Exception {
 
         customerID = 10;
-        customerURL = HOME_URL + CUSTOMER_URL;
+        customerURL = HOME_URL.concat(CUSTOMER_URL);
 
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(customerURL + customerID);
+        HttpGet request = new HttpGet(customerURL.concat(String.valueOf(customerID)));
         request.addHeader(APACHE_HTTP_CLIENT, USER_AGENT);
         HttpResponse response = client.execute(request);
         xmlResponse = XMLParser.parse(response);

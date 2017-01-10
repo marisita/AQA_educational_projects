@@ -17,24 +17,24 @@ public class WhenGetExistingProductThenReturnsNotEmptyFields {
     @Before
     public void setUp() throws Exception {
         productID = 10;
-        productURL = HOME_URL + PRODUCT_URL;
+        productURL = HOME_URL.concat(PRODUCT_URL);
     }
 
     @Test
     public void whenGetExistingProductThenReturnsValidId() throws Exception {
-        String actualId = PRODUCT_NODE_NAME + "." + ID_NODE_NAME;
+        String actualId = PRODUCT_NODE_NAME.concat(".").concat(ID_NODE_NAME);
         given().when().get(productURL + productID).then().contentType(ContentType.XML).body(actualId, RegexMatcher.matches(ID_PATTERN));
     }
 
     @Test
     public void whenGetExistingProductThenReturnsValidName() throws Exception {
-        String actualName = PRODUCT_NODE_NAME + "." + NAME_NODE_NAME;
+        String actualName = PRODUCT_NODE_NAME.concat(".").concat(NAME_NODE_NAME);
         given().when().get(productURL + productID).then().contentType(ContentType.XML).body(actualName, RegexMatcher.matches(NAME_PATTERN));
     }
 
     @Test
     public void whenGetExistingProductThenReturnsValidPrice() throws Exception {
-        String actualPrice = PRODUCT_NODE_NAME + "." + PRICE_NODE_NAME;
+        String actualPrice = PRODUCT_NODE_NAME.concat(".").concat(PRICE_NODE_NAME);
         given().when().get(productURL + productID).then().contentType(ContentType.XML).body(actualPrice, RegexMatcher.matches(PRICE_PATTERN));
     }
 }

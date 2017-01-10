@@ -2,6 +2,7 @@ package part3.positive;
 
 import domain.Customer;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
@@ -12,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static data.TestData.HttpClient.APACHE_HTTP_CLIENT;
-import static data.TestData.StatusCode.STATUS_CODE_201;
 import static data.TestData.Url.CUSTOMER_URL;
 import static data.TestData.Url.HOME_URL;
 import static org.apache.http.protocol.HTTP.USER_AGENT;
@@ -29,7 +29,7 @@ public class WhenPostNotExistingCustomerThenReturnsStatusCode201 {
     public void setUp() throws Exception {
 
         customerID = 2020;
-        customerURL = HOME_URL + CUSTOMER_URL;
+        customerURL = HOME_URL.concat(CUSTOMER_URL);
 
         Customer customer = new Customer(customerID);
         customerXML = customer.convertToXMLValid();
@@ -44,13 +44,13 @@ public class WhenPostNotExistingCustomerThenReturnsStatusCode201 {
         postRequest.addHeader(APACHE_HTTP_CLIENT, USER_AGENT);
         postRequest.setEntity(new StringEntity(customerXML));
         HttpResponse httpResponse = httpClient.execute(postRequest);
-        assertEquals(STATUS_CODE_201, httpResponse.getStatusLine().getStatusCode());
+        assertEquals(HttpStatus.SC_CREATED, httpResponse.getStatusLine().getStatusCode());
     }
 
     @After
     public void tearDown() throws Exception {
 
-        HttpDelete deleteRequest = new HttpDelete(customerURL + customerID);
+        HttpDelete deleteRequest = new HttpDelete(customerURL.concat(String.valueOf(customerID)));
         deleteRequest.addHeader(APACHE_HTTP_CLIENT, USER_AGENT);
         HttpResponse httpResponse = httpClient.execute(deleteRequest);
     }

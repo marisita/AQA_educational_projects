@@ -21,18 +21,6 @@ public final class TestData {
         }
     }
 
-    public static final class StatusCode {
-
-        public static final int STATUS_CODE_200 = 200;
-        public static final int STATUS_CODE_201 = 201;
-        public static final int STATUS_CODE_404 = 404;
-        public static final int STATUS_CODE_400 = 400;
-        public static final int STATUS_CODE_500 = 500;
-
-        private StatusCode() {
-        }
-    }
-
     public static final class CustomerAttributes {
 
         public static final String CUSTOMER_NODE_NAME = "CUSTOMER";
