@@ -18,13 +18,18 @@ public class ChromeDriverManager {
         if (webDriver == null) {
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
-            webDriver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
-            webDriver.manage().timeouts().setScriptTimeout(SET_SCRIPT_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
-            webDriver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT.getWaitMillis(), TimeUnit.SECONDS);
+            setTimeouts();
             return webDriver;
         } else {
             return webDriver;
         }
+    }
+
+    private static void setTimeouts() {
+        WebDriver.Timeouts timeouts = webDriver.manage().timeouts();
+        timeouts.pageLoadTimeout(PAGE_LOAD_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
+        timeouts.setScriptTimeout(SET_SCRIPT_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
+        timeouts.implicitlyWait(IMPLICITLY_WAIT.getWaitMillis(), TimeUnit.SECONDS);
     }
 
     public static void close() {

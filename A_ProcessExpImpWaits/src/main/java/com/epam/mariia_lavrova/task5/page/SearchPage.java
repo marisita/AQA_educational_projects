@@ -1,14 +1,15 @@
 package com.epam.mariia_lavrova.task5.page;
 
-import com.epam.mariia_lavrova.task5.driver.ChromeDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class SearchPage extends BasePage {
 
-    private WebElement searchInput = ChromeDriverManager.getDriver().findElement(By.name("q"));
-    private WebElement searchButton = ChromeDriverManager.getDriver()
-            .findElement(By.cssSelector(".sbico-c"));
+    @FindBy(name = "q")
+    private WebElement searchInput;
+
+    @FindBy(css = ".sbico-c")
+    private WebElement searchButton;
 
     private SearchPage inputSearchRequest(String request) {
         searchInput.sendKeys(request);

@@ -13,6 +13,6 @@ public abstract class BaseTest {
 
     @AfterTest
     public void tearDown() throws Exception {
-        ChromeDriverManager.close();
+        ChromeDriverManager.getDriver().close();
     }
 }
