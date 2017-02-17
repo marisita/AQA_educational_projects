@@ -2,11 +2,10 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ThreadGuard;
 
 import java.util.concurrent.TimeUnit;
 
-import static data.TestData.Waiter.*;
+import static constant.Waiter.*;
 
 public class ChromeDriverManager {
 
@@ -15,20 +14,29 @@ public class ChromeDriverManager {
     private ChromeDriverManager() {
     }
 
-    public static void init() {
-        webDriver = ThreadGuard.protect(new ChromeDriver());
-        webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
-        webDriver.manage().timeouts().setScriptTimeout(SET_SCRIPT_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
-        webDriver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT.getWaitMillis(), TimeUnit.SECONDS);
+    public synchronized static WebDriver getDriver() {
+        if (webDriver == null) {
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+            setTimeouts();
+            return webDriver;
+        } else {
+            return webDriver;
+        }
+    }
+
+    private static void setTimeouts() {
+        WebDriver.Timeouts timeouts = webDriver.manage().timeouts();
+        timeouts.pageLoadTimeout(PAGE_LOAD_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
+        timeouts.setScriptTimeout(SET_SCRIPT_TIME_OUT.getWaitMillis(), TimeUnit.SECONDS);
+        timeouts.implicitlyWait(IMPLICITLY_WAIT.getWaitMillis(), TimeUnit.SECONDS);
     }
 
     public static void close() {
-        webDriver.manage().deleteAllCookies();
-        webDriver.quit();
-    }
-
-    public static WebDriver getDriver() {
-        return webDriver;
+        if (webDriver != null) {
+            webDriver.manage().deleteAllCookies();
+            webDriver.quit();
+            webDriver = null;
+        }
     }
 }

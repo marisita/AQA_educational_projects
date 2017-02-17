@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
-import static constant.Attribute.ElementName.BUTTON;
-import static constant.Attribute.LoggerMessage.CANNOT_FIND_ELEMENT;
-import static constant.Attribute.LoggerMessage.CLICKED;
+import static constant.ElementName.BUTTON;
+import static constant.LoggerMessage.CANNOT_FIND_ELEMENT;
+import static constant.LoggerMessage.CLICKED;
 
 public class Button extends WebElementBase {
 

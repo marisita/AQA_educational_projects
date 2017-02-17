@@ -4,10 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
-import static constant.Attribute.ElementName.INPUT;
-import static constant.Attribute.LoggerMessage.CANNOT_FIND_ELEMENT;
-import static constant.Attribute.LoggerMessage.CLEARED;
-import static constant.Attribute.LoggerMessage.INPUTTED;
+import static constant.ElementName.INPUT;
+import static constant.LoggerMessage.*;
 
 public class Input extends WebElementBase {
 
@@ -17,7 +15,7 @@ public class Input extends WebElementBase {
         super(webElement);
     }
 
-    public void input(String text) {
+    public void fillInput(String text) {
         if (this.getWebElement().isDisplayed()){
             this.getWebElement().clear();
             LOGGER.info(CLEARED.toString(), INPUT.toString());

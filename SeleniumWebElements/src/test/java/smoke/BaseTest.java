@@ -8,7 +8,7 @@ public abstract class BaseTest {
 
     @BeforeTest
     public void setUp() throws Exception {
-        ChromeDriverManager.init();
+        ChromeDriverManager.getDriver();
     }
 
     @AfterTest

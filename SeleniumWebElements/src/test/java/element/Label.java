@@ -8,8 +8,9 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static constant.Attribute.ElementName.LABEL;
-import static constant.Attribute.LoggerMessage.CANNOT_FIND_ELEMENT;
+import static constant.ElementName.LABEL;
+import static constant.LoggerMessage.CANNOT_FIND_ELEMENT;
+import static constant.LoggerMessage.GET_TEXT;
 
 public class Label extends WebElementBase {
 
@@ -21,20 +22,12 @@ public class Label extends WebElementBase {
 
     public String getText() {
         if (this.getWebElement().isDisplayed()) {
+            LOGGER.info(GET_TEXT.toString(), LABEL.toString());
             return this.getWebElement().getText();
         } else {
             LOGGER.info(CANNOT_FIND_ELEMENT.toString(), LABEL.toString());
             throw new NoSuchElementException(CANNOT_FIND_ELEMENT.toString().concat(LABEL.toString()));
         }
-    }
-
-    public static boolean containsText(List<Label> labels, String text) {
-        for (Label label: labels) {
-            if (label.getText().toLowerCase().contains(text.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static List<Label> getLabels(List<WebElement> webElements) {

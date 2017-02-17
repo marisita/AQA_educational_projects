@@ -1,41 +1,47 @@
 package page;
 
-import driver.ChromeDriverManager;
 import element.Button;
 import element.Input;
 import element.Link;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-import static data.TestData.Selector.*;
+import static data.Selector.*;
 
 public class MainPage extends BasePage{
+
+    @FindBy (css = SEARCH_INPUT_SELECTOR)
+    private WebElement searchInputWebElement;
+
+    @FindBy(css = SEARCH_BUTTON_SELECTOR)
+    private WebElement searchButtonWebElement;
+
+    @FindBy(xpath = CATEGORY_LINK_SELECTOR)
+    private WebElement categoryLinkWebElement;
 
     private Input searchInput;
     private Button searchButton;
     private Link categoryLink;
 
     private void findSearchElements() {
-        By bySearchInput = By.cssSelector(SEARCH_INPUT_SELECTOR.toString());
-        searchInput = new Input(ChromeDriverManager.getDriver().findElement(bySearchInput));
-        By bySearchButton = By.cssSelector(SEARCH_BUTTON_SELECTOR.toString());
-        searchButton = new Button(ChromeDriverManager.getDriver().findElement(bySearchButton));
+        searchInput = new Input(searchInputWebElement);
+        searchButton = new Button(searchButtonWebElement);
     }
 
     private void findCategoryElements() {
-        By byCategoryLink = By.cssSelector(CATEGORY_LINK_SELECTOR.toString());
-        categoryLink = new Link(ChromeDriverManager.getDriver().findElement(byCategoryLink));
+        categoryLink = new Link(categoryLinkWebElement);
     }
 
     public SearchResultPage searchValidText(String searchText) {
         findSearchElements();
-        searchInput.input(searchText);
+        searchInput.fillInput(searchText);
         searchButton.click();
         return new SearchResultPage();
     }
 
     public SearchResultNothingPage searchInvalidText(String searchText) {
         findSearchElements();
-        searchInput.input(searchText);
+        searchInput.fillInput(searchText);
         searchButton.click();
         return new SearchResultNothingPage();
     }
