@@ -5,10 +5,10 @@ import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static data.TestData.TestAttribute.SEARCH_TEXT;
-import static data.TestData.TestAttribute.URL_YOUTUBE;
-import static data.TestData.TestSelector.SEARCH_INPUT_SELECTOR;
-import static data.TestData.TestSelector.SEARCH_RESULT_LINK;
+import static data.Selector.SEARCH_INPUT_SELECTOR;
+import static data.Selector.SEARCH_RESULT_LINK;
+import static data.TestAttribute.SEARCH_TEXT;
+import static data.TestAttribute.URL_YOUTUBE;
 
 public class GoogleSearchSecondTest extends BaseTest {
 

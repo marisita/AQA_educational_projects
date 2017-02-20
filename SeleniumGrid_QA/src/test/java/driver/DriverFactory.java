@@ -5,7 +5,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 
-import static data.TestData.BrowserName.*;
+import static data.BrowserName.*;
 
 public class DriverFactory {
 

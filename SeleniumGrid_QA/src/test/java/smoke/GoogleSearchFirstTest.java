@@ -5,8 +5,10 @@ import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static data.TestData.TestAttribute.*;
-import static data.TestData.TestSelector.*;
+import static data.Selector.SEARCH_INPUT_SELECTOR;
+import static data.Selector.SEARCH_RESULT_LINK;
+import static data.TestAttribute.SEARCH_TEXT;
+import static data.TestAttribute.URL_YOUTUBE;
 
 public class GoogleSearchFirstTest extends BaseTest {
 

@@ -9,8 +9,9 @@ import org.testng.annotations.BeforeMethod;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static data.TestData.Url.*;
-import static org.openqa.selenium.remote.BrowserType.CHROME;
+import static data.Url.GOOGLE;
+import static data.Url.LOCALHOST;
+import static data.BrowserName.CHROME;
 
 public abstract class BaseTest {
 
