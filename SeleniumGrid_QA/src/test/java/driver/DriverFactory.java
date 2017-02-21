@@ -10,14 +10,16 @@ import static data.BrowserName.*;
 public class DriverFactory {
 
     public static RemoteWebDriver createDriver(String browserType, URL hubUrl) {
-        if (FF.toString().equals(browserType)) {
-            return new RemoteWebDriver(hubUrl, DesiredCapabilities.firefox());
-        } else if (CHROME.toString().equalsIgnoreCase(browserType)) {
-            return new RemoteWebDriver(hubUrl, DesiredCapabilities.chrome());
-        } else if (IE.toString().equalsIgnoreCase(browserType)) {
-            return new RemoteWebDriver(hubUrl, DesiredCapabilities.internetExplorer());
-        } else {
-            throw new RuntimeException();
+
+        switch (browserType.toLowerCase()) {
+            case FF:
+                return new RemoteWebDriver(hubUrl, DesiredCapabilities.firefox());
+            case CHROME:
+                return new RemoteWebDriver(hubUrl, DesiredCapabilities.chrome());
+            case IE:
+                return new RemoteWebDriver(hubUrl, DesiredCapabilities.internetExplorer());
+            default:
+                throw new IllegalArgumentException("Invalid browser type");
         }
     }
 }

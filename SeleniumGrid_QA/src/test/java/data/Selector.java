@@ -12,8 +12,7 @@ public enum Selector {
         this.selector = selector;
     }
 
-    @Override
-    public String toString() {
+    public String getValue() {
         return selector;
     }
 }

@@ -1,21 +1,11 @@
 package data;
 
-public enum BrowserName {
+public final class BrowserName {
 
-    FF("ff"),
-    CHROME("chrome"),
-    IE("ie")
-    ;
+    public static final String FF = "ff";
+    public static final String CHROME = "chrome";
+    public static final String IE = "ie";
 
-    private String browserName;
-
-    BrowserName(String browserName) {
-        this.browserName = browserName;
+    private BrowserName() {
     }
-
-    @Override
-    public String toString() {
-        return browserName;
-    }
-
 }

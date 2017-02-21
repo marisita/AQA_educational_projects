@@ -12,8 +12,7 @@ public enum TestAttribute {
         this.attribute = attribute;
     }
 
-    @Override
-    public String toString() {
+    public String getValue() {
         return attribute;
     }
 }

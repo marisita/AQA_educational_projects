@@ -14,8 +14,9 @@ public class GoogleSearchSecondTest extends BaseTest {
 
     @Test
     public void searchingTest() {
-        getDriver().findElement(By.cssSelector(SEARCH_INPUT_SELECTOR.toString())).sendKeys(SEARCH_TEXT.toString(), Keys.ENTER);
-        getDriver().findElement(By.cssSelector(SEARCH_RESULT_LINK.toString())).click();
-        Assert.assertTrue(getDriver().getCurrentUrl().contains(URL_YOUTUBE.toString()));
+
+        getDriver().findElement(By.cssSelector(SEARCH_INPUT_SELECTOR.getValue())).sendKeys(SEARCH_TEXT.getValue(), Keys.ENTER);
+        getDriver().findElement(By.cssSelector(SEARCH_RESULT_LINK.getValue())).click();
+        Assert.assertTrue(getDriver().getCurrentUrl().contains(URL_YOUTUBE.getValue()));
     }
 }

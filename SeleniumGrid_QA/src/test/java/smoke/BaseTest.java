@@ -21,9 +21,9 @@ public abstract class BaseTest {
     public void setUp() throws Exception {
 
         threadLocal = new ThreadLocal<RemoteWebDriver>();
-        threadLocal.set(DriverFactory.createDriver(CHROME.toString(), new URL(LOCALHOST.toString())));
+        threadLocal.set(DriverFactory.createDriver(CHROME, new URL(LOCALHOST.getValue())));
         getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        getDriver().get(GOOGLE.toString());
+        getDriver().get(GOOGLE.getValue());
     }
 
     public WebDriver getDriver() {

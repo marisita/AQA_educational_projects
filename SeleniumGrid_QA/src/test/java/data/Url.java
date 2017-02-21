@@ -12,8 +12,7 @@ public enum Url {
         this.url = url;
     }
 
-    @Override
-    public String toString() {
+    public String getValue() {
         return url;
     }
 }
