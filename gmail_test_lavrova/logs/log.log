@@ -1,0 +1,112 @@
+2017-03-01 18:54:37,167 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-01 18:54:37,321 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-01 18:54:37,358 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-01 18:54:38,114 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-01 18:54:38,235 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-01 18:54:38,270 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-01 18:54:40,773 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-01 18:54:40,889 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-01 18:54:43,390 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page
+2017-03-01 18:54:43,591 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page
+2017-03-01 18:54:43,829 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page
+2017-03-01 18:54:43,986 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is visible on the page
+2017-03-01 18:54:44,026 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is clickable on the page
+2017-03-01 18:54:44,179 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Page pageName was refreshed
+2017-03-01 18:54:48,375 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink is visible on the page
+2017-03-01 18:54:48,408 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink is contains text 'subject1488387283659' on the page
+2017-03-01 18:58:25,354 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-01 18:58:25,501 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-01 18:58:25,540 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-01 18:58:26,289 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-01 18:58:26,411 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-01 18:58:26,449 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-01 18:58:29,505 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-01 18:58:29,544 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-01 18:58:34,561 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page
+2017-03-01 18:58:34,798 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page
+2017-03-01 18:58:35,073 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page
+2017-03-01 18:58:35,271 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is visible on the page
+2017-03-01 18:58:35,313 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is clickable on the page
+2017-03-01 18:58:35,465 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Page pageName was refreshed
+2017-03-01 18:58:39,030 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink is visible on the page
+2017-03-01 18:58:39,618 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink contains text 'subject1488387514852' on the page
+2017-03-02 13:36:23,611 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-02 13:36:23,763 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-02 13:36:23,800 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-02 13:36:24,558 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-02 13:36:24,674 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-02 13:36:24,711 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-02 13:36:27,490 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-02 13:36:29,734 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-02 13:36:29,965 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page
+2017-03-02 13:36:30,187 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page
+2017-03-02 13:36:30,358 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page
+2017-03-02 13:36:30,512 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is visible on the page
+2017-03-02 13:36:30,552 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is clickable on the page
+2017-03-02 13:36:30,739 INFO [com.epam.mariia_lavrova.helper.Action] - Page pageName was refreshed
+2017-03-02 13:36:34,364 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink is visible on the page
+2017-03-02 13:36:34,998 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink does not contains text 'subject1488454594367' on the page
+2017-03-02 13:38:45,370 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-02 13:38:45,514 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-02 13:38:45,554 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-02 13:38:46,305 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-02 13:38:46,428 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-02 13:38:46,464 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-02 13:38:48,915 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-02 13:38:49,029 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-02 13:39:24,558 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-02 13:39:24,709 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-02 13:39:24,744 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-02 13:39:25,491 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-02 13:39:25,610 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-02 13:39:25,646 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-02 13:39:28,134 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-02 13:39:28,245 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-02 13:39:30,173 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page
+2017-03-02 13:39:30,382 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page
+2017-03-02 13:39:30,597 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page
+2017-03-02 13:39:30,765 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is visible on the page
+2017-03-02 13:39:30,809 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is clickable on the page
+2017-03-02 13:39:30,961 INFO [com.epam.mariia_lavrova.helper.Action] - Page pageName was refreshed
+2017-03-02 13:39:35,194 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink is visible on the page
+2017-03-02 13:39:35,226 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink contains text 'subject1488454770294' on the page
+2017-03-02 14:20:14,060 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-02 14:20:14,208 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-02 14:20:14,248 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-02 14:20:15,001 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-02 14:20:15,132 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-02 14:20:15,175 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-02 14:20:18,120 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-02 14:20:18,157 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-02 14:20:20,541 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page
+2017-03-02 14:20:20,764 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page
+2017-03-02 14:20:20,956 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page
+2017-03-02 14:20:21,112 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is visible on the page
+2017-03-02 14:20:21,160 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is clickable on the page
+2017-03-02 14:20:21,331 INFO [com.epam.mariia_lavrova.helper.Action] - Page com.epam.mariia_lavrova.page.MailMailPage was refreshed
+2017-03-02 14:20:24,877 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink is visible on the page
+2017-03-02 14:20:25,549 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element letterSubjectLink contains text 'subject1488457220668' on the page
+2017-03-02 14:21:23,540 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page
+2017-03-02 14:21:23,690 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page
+2017-03-02 14:21:23,727 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page
+2017-03-02 14:21:24,476 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page
+2017-03-02 14:21:24,593 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page
+2017-03-02 14:21:24,628 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page
+2017-03-02 14:21:27,244 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page
+2017-03-02 14:21:27,289 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page
+2017-03-02 14:21:30,126 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page
+2017-03-02 14:21:30,323 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page
+2017-03-02 14:21:30,520 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page
+2017-03-02 14:21:32,663 ERROR [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is not visible on the page
+2017-03-02 14:25:44,969 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element emailInput is visible on the page 
+2017-03-02 14:25:45,137 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is visible on the page 
+2017-03-02 14:25:45,169 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element nextButton is clickable on the page 
+2017-03-02 14:25:45,938 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element passwordInput is visible on the page 
+2017-03-02 14:25:46,059 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is visible on the page 
+2017-03-02 14:25:46,090 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element singInButton is clickable on the page 
+2017-03-02 14:25:48,596 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is visible on the page 
+2017-03-02 14:25:50,547 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element writeButton is clickable on the page 
+2017-03-02 14:25:50,791 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element toInput is visible on the page 
+2017-03-02 14:25:51,019 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element subjectInput is visible on the page 
+2017-03-02 14:25:51,232 INFO [com.epam.mariia_lavrova.helper.ActionHelper] - Element bodyInput is visible on the page 
+2017-03-02 14:25:53,870 ERROR [com.epam.mariia_lavrova.helper.ActionHelper] - Element sendButton is not visible on the page 
