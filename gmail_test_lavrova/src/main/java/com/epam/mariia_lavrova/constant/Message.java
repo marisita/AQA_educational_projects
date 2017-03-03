@@ -9,6 +9,8 @@ package com.epam.mariia_lavrova.constant;
 
 public final class Message {
 
+    public static final String INVALID_DRIVER_NAME = "Invalid driver name";
+
     public static final String PAGE_WAS_REFRESHED = "Page %s was refreshed";
     public static final String PAGE_WAS_NOT_REFRESHED = "Page %s was not refreshed";
 
@@ -23,6 +25,9 @@ public final class Message {
 
     public static final String ELEMENT_IS_VISIBLE_ON_THE_PAGE = "Element %s is visible on the page %s";
     public static final String ELEMENT_NOT_VISIBLE_ON_THE_PAGE = "Element %s is not visible on the page %s";
+
+    public static final String ELEMENT_WAS_CLICKED_ON_THE_PAGE = "Element %s was clicked on the page %s";
+    public static final String ELEMENT_WAS_FILLED_WITH_VALUE_ON_THE_PAGE = "Element %s was filled with value on the page %s";
 
     private Message() {
     }

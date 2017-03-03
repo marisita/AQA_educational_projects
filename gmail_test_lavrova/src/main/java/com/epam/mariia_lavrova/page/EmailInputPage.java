@@ -11,8 +11,6 @@ import static com.epam.mariia_lavrova.constant.Locator.NEXT_BUTTON_LOCATOR;
 
 public class EmailInputPage extends BasePage {
 
-    private String pageName = this.getClass().getName();
-
     @FindBy(xpath = EMAIL_INPUT_LOCATOR)
     private WebElement emailInput;
 

@@ -9,8 +9,6 @@ import static com.epam.mariia_lavrova.constant.Locator.*;
 
 public class NewLetterPage extends BasePage {
 
-    private String PAGE_NAME = this.getClass().getName();
-
     @FindBy(xpath = TO_INPUT_LOCATOR)
     private WebElement toInput;
 
@@ -24,22 +22,22 @@ public class NewLetterPage extends BasePage {
     private WebElement sendButton;
 
     public NewLetterPage fillToInput(String to) {
-        Action.fillInput(toInput, to, TO_INPUT, PAGE_NAME);
+        Action.fillInput(toInput, to, TO_INPUT, pageName);
         return this;
     }
 
     public NewLetterPage fillSubjectInput(String subject) {
-        Action.fillInput(subjectInput, subject, SUBJECT_INPUT, PAGE_NAME);
+        Action.fillInput(subjectInput, subject, SUBJECT_INPUT, pageName);
         return this;
     }
 
     public NewLetterPage fillBodyInput(String body) {
-        Action.fillInput(bodyInput, body, BODY_INPUT, PAGE_NAME);
+        Action.fillInput(bodyInput, body, BODY_INPUT, pageName);
         return this;
     }
 
-    public MailMailPage clickSendButton() {
-        Action.click(sendButton, SEND_BUTTON, PAGE_NAME);
-        return new MailMailPage();
+    public MailPage clickSendButton() {
+        Action.click(sendButton, SEND_BUTTON, pageName);
+        return new MailPage();
     }
 }

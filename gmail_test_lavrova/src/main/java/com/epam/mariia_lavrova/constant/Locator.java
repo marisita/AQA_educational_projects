@@ -21,7 +21,7 @@ public final class Locator {
     public static final String TO_INPUT_LOCATOR = ".//*[@name='to']";
     public static final String SUBJECT_INPUT_LOCATOR = ".//*[@name='subjectbox']";
     public static final String BODY_INPUT_LOCATOR = ".//*[@class='Ap']/div[2]/div";
-    public static final String SEND_BUTTON_LOCATOR = ".//*[@class='gU Up']/div/div[2] dfbfdb";
+    public static final String SEND_BUTTON_LOCATOR = ".//*[@class='gU Up']/div/div[2]";
 
     private Locator() {
     }

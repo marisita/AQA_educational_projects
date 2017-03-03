@@ -6,10 +6,12 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
 
+    protected String pageName;
     private WebDriver driver;
 
     public BasePage() {
         driver = ChromeDriverManager.getDriver();
+        pageName = this.getClass().getSimpleName();
         PageFactory.initElements(driver, this);
     }
 }

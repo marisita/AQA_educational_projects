@@ -11,8 +11,6 @@ import static com.epam.mariia_lavrova.constant.Locator.SIGN_IN_BUTTON_LOCATOR;
 
 public class PasswordInputPage extends BasePage {
 
-    private String pageName = this.getClass().getName();
-
     @FindBy(xpath = PASSWORD_BUTTON_LOCATOR)
     private WebElement passwordInput;
 
@@ -24,8 +22,8 @@ public class PasswordInputPage extends BasePage {
         return this;
     }
 
-    public MailMailPage clickSingInButton() {
+    public MailPage clickSingInButton() {
         Action.click(singInButton, SING_IN_BUTTON, pageName);
-        return new MailMailPage();
+        return new MailPage();
     }
 }

@@ -10,9 +10,7 @@ import static com.epam.mariia_lavrova.constant.Locator.LETTER_SUBJECT_LINK_LOCAT
 import static com.epam.mariia_lavrova.constant.Locator.WRITE_BUTTON_LOCATOR;
 import static com.epam.mariia_lavrova.constant.TestData.SUBJECT;
 
-public class MailMailPage extends BasePage {
-
-    private String pageName = this.getClass().getName();
+public class MailPage extends BasePage {
 
     @FindBy(xpath = WRITE_BUTTON_LOCATOR)
     private WebElement writeButton;
@@ -25,12 +23,12 @@ public class MailMailPage extends BasePage {
         return new NewLetterPage();
     }
 
-    public MailMailPage refreshPage() {
+    public MailPage refreshPage() {
         Action.refreshPage(pageName);
         return this;
     }
 
-    public MailMailPage assertLetterTheSame() {
+    public MailPage assertLetterTheSame() {
         Action.assertText(letterSubjectLink, SUBJECT, LETTER_SUBJECT_LINK, pageName);
         return this;
     }

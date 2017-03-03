@@ -1,10 +1,10 @@
 package com.epam.mariia_lavrova.driver;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.epam.mariia_lavrova.constant.DriverName.CHROME;
 import static com.epam.mariia_lavrova.constant.Waiter.*;
 
 /**
@@ -28,7 +28,7 @@ public class ChromeDriverManager {
      */
     public synchronized static WebDriver getDriver() {
         if (webDriver == null) {
-            webDriver = new ChromeDriver();
+            webDriver = DriverFactory.createDriver(CHROME);
             webDriver.manage().window().maximize();
             setTimeouts();
             return webDriver;

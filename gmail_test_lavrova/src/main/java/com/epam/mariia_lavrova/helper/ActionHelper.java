@@ -16,6 +16,7 @@ import static com.epam.mariia_lavrova.constant.Message.*;
 public class ActionHelper {
 
     private static Logger logger = LogManager.getLogger(ActionHelper.class);
+    private static WebDriverWait wait = new WebDriverWait(ChromeDriverManager.getDriver(), 3);
 
     public static boolean isContains(String actualText, String expectedText) {
         actualText = actualText.toLowerCase().replace(" ", "");
@@ -47,7 +48,6 @@ public class ActionHelper {
     }
 
     public static boolean isClickable(WebElement webElement, String elementName) {
-        WebDriverWait wait = new WebDriverWait(ChromeDriverManager.getDriver(), 2);
         ExpectedCondition<WebElement> presenceCondition = ExpectedConditions.elementToBeClickable(webElement);
         try {
             wait.until(presenceCondition);
@@ -60,7 +60,6 @@ public class ActionHelper {
     }
 
     public static boolean isVisible(WebElement webElement, String elementName) {
-        WebDriverWait wait = new WebDriverWait(ChromeDriverManager.getDriver(), 2);
         ExpectedCondition<WebElement> presenceCondition = ExpectedConditions.visibilityOf(webElement);
         try {
             wait.until(presenceCondition);
